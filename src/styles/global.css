@@ -1,0 +1,21 @@
+/*
+  Placeholder tokens — finalized in Phase 1 (Brand & design system)
+  once the palette and typography are locked in from the logo.
+*/
+:root {
+  --color-brand-red: #a30000;
+  --color-ink: #1a1a1a;
+  --color-paper: #ffffff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--color-ink);
+  background: var(--color-paper);
+}

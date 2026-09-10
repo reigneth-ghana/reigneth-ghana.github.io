@@ -5,16 +5,18 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 
 ## Phase 0 — Repo & foundation ✅ (this update)
 
-- [x] Repo scaffold (folder structure, README, roadmap, .gitignore)
+- [x] GitHub org confirmed: `reigneth-ghana`
+- [x] Stack confirmed: Astro (Node), static output
+- [x] Astro project scaffolded, builds clean (`npm run build`)
+- [x] Base layout (`src/layouts/BaseLayout.astro`) and global styles wired up
+- [x] Folder structure in place (`src/pages`, `src/layouts`, `src/components`, `src/styles`, `public/images`, `public/docs`)
 - [x] Brand assets copied in (logo, initial product photos)
-- [ ] Confirm GitHub org name
-- [ ] Confirm stack: plain HTML/CSS/JS (default) vs. framework
 
 ## Phase 1 — Brand & design system
 
 - [ ] Color palette locked in (from the RCL logo: deep red/maroon + black/white)
 - [ ] Typography chosen (headline + body)
-- [ ] Base CSS: variables, reset, layout grid, spacing scale
+- [ ] Design tokens finalized in `src/styles/global.css` (replacing current placeholders)
 - [ ] Shared header/nav and footer components
 
 ## Phase 2 — Core pages
@@ -30,18 +32,18 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 
 - [ ] Decide which materials go public (e.g. service profile PDF, spec sheets)
 - [ ] Downloads page with a simple card/list layout
-- [ ] Confirm file hosting approach (in-repo vs. external)
+- [ ] Confirm file hosting approach (in-repo `public/docs` vs. external)
 
 ## Phase 4 — Polish & QA
 
 - [ ] Mobile/responsive pass
 - [ ] Accessibility pass (contrast, focus states, alt text)
-- [ ] SEO basics: meta tags, favicon, Open Graph image, sitemap.xml
+- [ ] SEO basics: meta tags, favicon, Open Graph image, sitemap
 - [ ] Cross-browser check
 
 ## Phase 5 — Deployment
 
-- [ ] GitHub Pages set up on the org repo
+- [ ] GitHub Actions workflow: build with Astro, deploy to GitHub Pages
 - [ ] Custom domain (if/when available) pointed at Pages
 - [ ] Final smoke test on live URL
 
@@ -49,7 +51,6 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 
 ### Open questions to resolve as we go
 
-- Final org/repo name (`reigneth-ghana` vs `reigneth-gh` vs other)
 - Contact details for the Contact page
 - Whether the service profile PDF (and any other docs) should be public
 - Any additional product photos/logo variants beyond what's been uploaded so far

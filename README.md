@@ -6,28 +6,45 @@ equipment supplier — specializing in shrink wrap machines, banknote
 banding machines, and related maintenance services for banks and
 businesses across Ghana.
 
+GitHub org: [`reigneth-ghana`](https://github.com/reigneth-ghana)
+
 ## Stack
 
-Plain HTML, CSS, and JavaScript — no build step. This keeps the site
-easy to host on GitHub Pages and easy to hand-edit without tooling
-overhead. (Open to revisiting this if the site's needs grow.)
+[Astro](https://astro.build) — static output, no client-side framework
+needed for a marketing/company site like this. Keeps builds fast and
+hosting simple (GitHub Pages).
+
+## Getting started
+
+```
+npm install
+npm run dev
+```
+
+Visit `http://localhost:4321`.
+
+To build the production site:
+
+```
+npm run build
+npm run preview   # preview the production build locally
+```
 
 ## Project structure
 
 ```
 reigneth-site/
-├── index.html          # Home page (added in Phase 2)
-├── services.html        # Services page (added in Phase 2)
-├── about.html            # About / Team page (added in Phase 2)
-├── contact.html          # Contact page (added in Phase 2)
-├── downloads.html      # Public downloads page (added in Phase 3, if approved)
-├── css/                       # Stylesheets
-├── js/                          # Scripts
-├── assets/
+├── src/
+│   ├── pages/            # Routes — one .astro file per page
+│   ├── layouts/          # Shared page layout(s)
+│   ├── components/       # Reusable UI pieces (added as pages are built)
+│   └── styles/           # Global styles / design tokens
+├── public/
 │   ├── images/
-│   │   ├── logo/          # RCL brand logo
-│   │   └── products/  # Equipment photos
-│   └── docs/               # Publicly downloadable PDFs (Phase 3)
+│   │   ├── logo/         # RCL brand logo
+│   │   └── products/     # Equipment photos
+│   └── docs/             # Publicly downloadable PDFs (Phase 3, if approved)
+├── astro.config.mjs
 ├── ROADMAP.md
 └── README.md
 ```
@@ -35,21 +52,12 @@ reigneth-site/
 ## How updates work
 
 This project is being built incrementally, phase by phase — see
-`ROADMAP.md` for the current plan and progress. Each update will be
-delivered as a zip you can drag-and-drop into this repo folder to
-merge in the new/changed files.
-
-## Local preview
-
-No build step needed — just open `index.html` directly in a browser,
-or serve the folder locally:
-
-```
-python3 -m http.server 8000
-```
-
-Then visit `http://localhost:8000`.
+`ROADMAP.md` for the current plan and progress. Each update is
+delivered as a zip; unzip and merge its contents into this project
+folder (dependencies and build output are excluded from the zip —
+run `npm install` after merging if `package.json` changed).
 
 ## Deployment
 
-Planned: GitHub Pages, served from this repo (see ROADMAP.md, Phase 5).
+Planned: GitHub Pages via a GitHub Actions workflow that runs
+`astro build` and publishes `dist/` (see ROADMAP.md, Phase 5).
