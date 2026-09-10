@@ -1,11 +1,50 @@
 /*
-  Placeholder tokens — finalized in Phase 1 (Brand & design system)
-  once the palette and typography are locked in from the logo.
+  Reigneth Company Limited — design tokens
+  Phase 1: palette drawn from the RCL logo (maroon-red + near-black),
+  paired with a technical/industrial type system fitting a CIT and
+  office-equipment supplier.
 */
+
 :root {
-  --color-brand-red: #a30000;
-  --color-ink: #1a1a1a;
-  --color-paper: #ffffff;
+  /* Color */
+  --color-brand-red: #9a0000;
+  --color-brand-red-dark: #6e0000;
+  --color-ink: #1c1a1a;
+  --color-ink-soft: #4a4744;
+  --color-paper: #efefed;
+  --color-surface: #ffffff;
+  --color-brass: #b08d3e;
+  --color-border: #ddd6d3;
+
+  /* Type */
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  --text-xs: 0.8125rem; /* 13px */
+  --text-sm: 0.9375rem; /* 15px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.25rem; /* 20px */
+  --text-xl: 1.625rem; /* 26px */
+  --text-2xl: 2.25rem; /* 36px */
+  --text-3xl: 3rem; /* 48px */
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* Spacing (8px base) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-12: 6rem;
+
+  /* Layout */
+  --content-width: 72rem;
+  --band-width: 3px;
 }
 
 *,
@@ -14,8 +53,117 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
   color: var(--color-ink);
   background: var(--color-paper);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--space-2);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: var(--text-3xl);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+}
+
+h3 {
+  font-size: var(--text-xl);
+}
+
+p {
+  margin: 0 0 var(--space-2);
+  max-width: 40rem;
+  color: var(--color-ink-soft);
+}
+
+a {
+  color: var(--color-brand-red);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-brand-red);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  padding: 0.7rem 1.25rem;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.button--primary {
+  background: var(--color-brand-red);
+  color: var(--color-surface);
+}
+
+.button--primary:hover {
+  background: var(--color-brand-red-dark);
+}
+
+.button--ghost {
+  background: transparent;
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+.button--ghost:hover {
+  border-color: var(--color-brand-red);
+  color: var(--color-brand-red);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a,
+  .button {
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease;
+  }
 }

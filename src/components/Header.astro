@@ -1,0 +1,136 @@
+---
+interface Props {
+  activePath?: string;
+}
+
+const { activePath = "" } = Astro.props;
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<header class="site-header">
+  <div class="wrap site-header__row">
+    <a href="/" class="site-header__brand">
+      <img
+        src="/images/logo/rcl-logo.jpg"
+        alt="Reigneth Company Limited"
+        width="36"
+        height="36"
+      />
+      <span class="site-header__name">Reigneth&nbsp;Company&nbsp;Limited</span>
+    </a>
+
+    <nav class="site-header__nav" aria-label="Primary">
+      <ul>
+        {
+          links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                aria-current={activePath === link.href ? "page" : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a href="/contact" class="button button--primary site-header__cta">
+      Request a quote
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--color-surface);
+    border-bottom: var(--band-width) solid var(--color-brand-red);
+  }
+
+  .site-header__row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding-block: var(--space-2);
+  }
+
+  .site-header__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-sm);
+    white-space: nowrap;
+  }
+
+  .site-header__brand:hover {
+    text-decoration: none;
+    color: var(--color-brand-red);
+  }
+
+  .site-header__brand img {
+    border-radius: 2px;
+  }
+
+  .site-header__nav {
+    flex: 1;
+  }
+
+  .site-header__nav ul {
+    display: flex;
+    gap: var(--space-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-header__nav a {
+    color: var(--color-ink);
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+
+  .site-header__nav a:hover {
+    color: var(--color-brand-red);
+  }
+
+  .site-header__nav a[aria-current="page"] {
+    color: var(--color-brand-red);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .site-header__cta {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .site-header__row {
+      flex-wrap: wrap;
+    }
+
+    .site-header__name {
+      display: none;
+    }
+
+    .site-header__nav ul {
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .site-header__cta {
+      order: 3;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

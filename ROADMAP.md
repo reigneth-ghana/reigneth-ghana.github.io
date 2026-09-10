@@ -12,12 +12,13 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [x] Folder structure in place (`src/pages`, `src/layouts`, `src/components`, `src/styles`, `public/images`, `public/docs`)
 - [x] Brand assets copied in (logo, initial product photos)
 
-## Phase 1 — Brand & design system
+## Phase 1 — Brand & design system ✅ (this update)
 
-- [ ] Color palette locked in (from the RCL logo: deep red/maroon + black/white)
-- [ ] Typography chosen (headline + body)
-- [ ] Design tokens finalized in `src/styles/global.css` (replacing current placeholders)
-- [ ] Shared header/nav and footer components
+- [x] Color palette locked in (from the RCL logo: brand red `#9A0000`, ink `#1C1A1A`, ink-soft `#4A4744`, paper `#EFEFED`, surface white, brass `#B08D3E` secondary accent)
+- [x] Typography chosen — Archivo (headings) + IBM Plex Sans (body) + IBM Plex Mono (specs/technical labels)
+- [x] Design tokens finalized in `src/styles/global.css` (colors, type scale, spacing scale, buttons)
+- [x] Shared header/nav (`src/components/Header.astro`) and footer (`src/components/Footer.astro`), wired into `BaseLayout.astro`
+- [x] Recurring "band" motif (a solid red bar, referencing banknote banding straps) used under the header and atop the footer
 
 ## Phase 2 — Core pages
 
