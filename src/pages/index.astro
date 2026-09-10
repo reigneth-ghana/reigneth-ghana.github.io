@@ -1,15 +1,316 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const services = [
+  {
+    href: "/services#shrink-wrap",
+    title: "Shrink Wrap Machines",
+    copy: "High-quality shrink wrap machines for secure, efficient product packaging — supply, installation, repairs and routine maintenance.",
+    img: "/images/products/product-2.jpg",
+  },
+  {
+    href: "/services#banknote-banding",
+    title: "Bank Note Banding Machines",
+    copy: "Advanced banknote banding machines supplied and maintained for banks across Ghana, streamlining cash management.",
+    img: "/images/products/mabas-banding.jpg",
+  },
+  {
+    href: "/services#coin-counting",
+    title: "Coin Counting Machines",
+    copy: "Fast, accurate single-denomination coin counters built for continuous, high-volume processing.",
+    img: "/images/products/coin-counter.jpg",
+  },
+];
+
+const reasons = [
+  {
+    title: "Quality Products",
+    copy: "We source and supply only the best products from reputable manufacturers, ensuring durability and reliability.",
+  },
+  {
+    title: "Expert Maintenance Services",
+    copy: "Our skilled technicians provide comprehensive maintenance services to keep your equipment in optimal condition.",
+  },
+  {
+    title: "Customer-Centric Approach",
+    copy: "We prioritize your needs, offering tailored solutions and prompt support to minimize downtime and maximize productivity.",
+  },
+  {
+    title: "Nationwide Coverage",
+    copy: "We serve clients across Ghana, with technicians in both the Southern and Northern zones.",
+  },
+];
 ---
 
 <BaseLayout title="Home" activePath="/">
-  <main class="wrap">
-    <section style="padding-block: 4rem;">
-      <h1>Reigneth Company Limited</h1>
+  <main>
+    <section class="hero">
+      <div class="wrap hero__row">
+        <div class="hero__copy">
+          <p class="eyebrow">
+            CIT Solutions &middot; Office Equipment &middot; Ghana
+          </p>
+          <h1>Elevate your business with Reigneth Company Limited</h1>
+          <p class="hero__lede">
+            A leading Cash-in-Transit solution provider, general merchant, and
+            office equipment supplier in Ghana — trusted by banks and businesses
+            nationwide for quality products and unmatched maintenance services.
+          </p>
+          <div class="hero__actions">
+            <a href="/contact" class="button button--primary">Request a quote</a
+            >
+            <a href="/services" class="button button--ghost"
+              >Explore our services</a
+            >
+          </div>
+        </div>
+        <div class="hero__art" aria-hidden="true">
+          <img
+            src="/images/products/product-1.jpg"
+            alt=""
+            width="560"
+            height="420"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <div class="section__head">
+        <h2>What we do</h2>
+        <p>
+          We supply and maintain the essential equipment banks and businesses
+          rely on daily — from packaging machinery to currency-handling systems
+          — backed by nationwide technical support.
+        </p>
+      </div>
+
+      <div class="cards">
+        {
+          services.map((s) => (
+            <a class="card" href={s.href}>
+              <img src={s.img} alt="" width="400" height="260" />
+              <div class="card__body">
+                <h3>{s.title}</h3>
+                <p>{s.copy}</p>
+                <span class="card__link">Learn more &rarr;</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="why">
+      <div class="wrap">
+        <div class="section__head section__head--light">
+          <h2>Why choose Reigneth?</h2>
+          <p>
+            We believe in fostering long-lasting relationships built on trust,
+            reliability, and satisfaction.
+          </p>
+        </div>
+
+        <div class="why__grid">
+          {
+            reasons.map((r, i) => (
+              <div class="why__item">
+                <span class="why__index">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{r.title}</h3>
+                <p>{r.copy}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap cta">
+      <h2>Ready to work with us?</h2>
       <p>
-        Full homepage arrives in Phase 2 — Phase 1 (brand &amp; design system)
-        is now in place: palette, type, and shared header/footer.
+        Join the growing number of satisfied clients who trust Reigneth Company
+        Limited for their office equipment and maintenance needs.
       </p>
+      <a href="/contact" class="button button--primary">Get in touch</a>
     </section>
   </main>
 </BaseLayout>
+
+<style>
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-brand-red);
+    margin-bottom: var(--space-2);
+  }
+
+  .hero {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero__row {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: var(--space-4);
+    padding-block: var(--space-8);
+  }
+
+  .hero__lede {
+    font-size: var(--text-lg);
+    max-width: 34rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-top: var(--space-3);
+  }
+
+  .hero__art img {
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+  }
+
+  .section {
+    padding-block: var(--space-8);
+  }
+
+  .section__head {
+    max-width: 40rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .section__head--light p,
+  .section__head--light h2 {
+    color: var(--color-paper);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    color: inherit;
+  }
+
+  .card:hover {
+    text-decoration: none;
+    border-color: var(--color-brand-red);
+  }
+
+  .card img {
+    width: 100%;
+    height: 12rem;
+    object-fit: contain;
+    background: var(--color-paper);
+    padding: var(--space-2);
+  }
+
+  .card__body {
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .card__body h3 {
+    font-size: var(--text-lg);
+    margin-bottom: 0;
+  }
+
+  .card__body p {
+    font-size: var(--text-sm);
+    margin-bottom: 0;
+  }
+
+  .card__link {
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-brand-red);
+  }
+
+  .why {
+    background: var(--color-ink);
+    padding-block: var(--space-8);
+  }
+
+  .why__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+  }
+
+  .why__item {
+    border-top: var(--band-width) solid var(--color-brand-red);
+    padding-top: var(--space-2);
+  }
+
+  .why__index {
+    display: block;
+    font-family: var(--font-mono);
+    color: var(--color-brass);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-1);
+  }
+
+  .why__item h3 {
+    color: var(--color-surface);
+    font-size: var(--text-base);
+  }
+
+  .why__item p {
+    color: #c9c6c3;
+    font-size: var(--text-sm);
+  }
+
+  .cta {
+    text-align: center;
+    padding-block: var(--space-8);
+  }
+
+  .cta p {
+    margin-inline: auto;
+  }
+
+  .cta .button {
+    margin-top: var(--space-2);
+  }
+
+  @media (max-width: 900px) {
+    .hero__row {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__art {
+      order: -1;
+    }
+
+    .cards {
+      grid-template-columns: 1fr;
+    }
+
+    .why__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .why__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

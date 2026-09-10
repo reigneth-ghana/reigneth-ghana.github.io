@@ -1,0 +1,255 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const leadership = [
+  { name: "Madam Afua Hanson", role: "Chief Executive Officer" },
+  { name: "Mr. Michael Selormey Hanson", role: "Managing Director" },
+  { name: "Mr. Timothy Azumah Azirigo", role: "Chief Operating Officer" },
+  { name: "Mr. Gerald Aryeequaye", role: "Director of Finance" },
+];
+
+const southernZone = [
+  {
+    name: "Mr. Alex Joseph Mensah",
+    role: "Chief Technician — Southern Zone",
+    note: "Degree, Electrical Engineering",
+  },
+  { name: "Mr. Francis Alaga", role: "Assistant Technician" },
+  { name: "Mr. Bismark Yaw Obeng", role: "Assistant Technician" },
+  { name: "Mr. Jeremiah Nortey", role: "Assistant Technician" },
+];
+
+const northernZone = [
+  {
+    name: "Mr. Osman Salu",
+    role: "Chief Technician — Northern Zone",
+    note: "Degree, Electrical / Electronic Engineering",
+  },
+];
+---
+
+<BaseLayout title="About" activePath="/about">
+  <main class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">About Reigneth</p>
+      <h1>Built on trust, reliability, and satisfaction</h1>
+      <p class="page-head__lede">
+        Reigneth Company Limited is a leading Cash-in-Transit (CIT) solution
+        provider, general merchant, and office equipment supplier in Ghana. We
+        pride ourselves on delivering top-quality products and exceptional
+        maintenance services.
+      </p>
+    </header>
+
+    <section class="objective">
+      <h2>Our Core Objective</h2>
+      <p>
+        Our primary goal is to ensure that our customers and prospective clients
+        receive the best quality products and unparalleled maintenance services.
+        We believe in fostering long-lasting relationships built on trust,
+        reliability, and satisfaction.
+      </p>
+    </section>
+
+    <section id="team" class="team">
+      <h2>Leadership</h2>
+      <div class="people-grid">
+        {
+          leadership.map((p) => (
+            <div class="person">
+              <span class="person__mark" aria-hidden="true" />
+              <h3>{p.name}</h3>
+              <p>{p.role}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="coverage" class="team">
+      <h2>Technicians</h2>
+      <p class="team__intro">
+        We serve clients across Ghana, ensuring that no matter where you are,
+        you have access to our superior products and services.
+      </p>
+
+      <div class="zones">
+        <div class="zone">
+          <h3 class="zone__title">Southern Zone</h3>
+          <div class="people-grid people-grid--compact">
+            {
+              southernZone.map((p) => (
+                <div class="person person--compact">
+                  <h4>{p.name}</h4>
+                  <p>{p.role}</p>
+                  {p.note && <p class="person__note">{p.note}</p>}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="zone">
+          <h3 class="zone__title">Northern Zone</h3>
+          <div class="people-grid people-grid--compact">
+            {
+              northernZone.map((p) => (
+                <div class="person person--compact">
+                  <h4>{p.name}</h4>
+                  <p>{p.role}</p>
+                  {p.note && <p class="person__note">{p.note}</p>}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap cta">
+      <h2>Nationwide coverage, local support</h2>
+      <p>
+        Wherever you are in Ghana, our technicians are on hand to keep your
+        equipment running.
+      </p>
+      <a href="/contact" class="button button--primary">Get in touch</a>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-brand-red);
+    margin-bottom: var(--space-2);
+  }
+
+  .page-head {
+    padding-block: var(--space-6) var(--space-4);
+    max-width: 44rem;
+  }
+
+  .page-head__lede {
+    font-size: var(--text-lg);
+  }
+
+  .objective,
+  .team {
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .objective p {
+    max-width: 42rem;
+  }
+
+  .team__intro {
+    max-width: 42rem;
+  }
+
+  .people-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+  }
+
+  .person {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: var(--space-3);
+  }
+
+  .person__mark {
+    display: block;
+    width: var(--space-3);
+    height: 3px;
+    background: var(--color-brand-red);
+    margin-bottom: var(--space-2);
+  }
+
+  .person h3 {
+    font-size: var(--text-base);
+    margin-bottom: 0.25rem;
+  }
+
+  .person p {
+    font-size: var(--text-sm);
+    margin-bottom: 0;
+    color: var(--color-brass);
+    font-weight: 600;
+  }
+
+  .zones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+  }
+
+  .zone__title {
+    font-size: var(--text-lg);
+    padding-bottom: var(--space-1);
+    border-bottom: var(--band-width) solid var(--color-brand-red);
+  }
+
+  .people-grid--compact {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+
+  .person--compact {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .person--compact h4 {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    margin-bottom: 0.2rem;
+  }
+
+  .person--compact p {
+    color: var(--color-ink-soft);
+    font-weight: 500;
+    font-size: var(--text-xs);
+  }
+
+  .person__note {
+    font-family: var(--font-mono);
+    color: var(--color-brass) !important;
+    margin-top: 0.2rem;
+  }
+
+  .cta {
+    text-align: center;
+    padding-block: var(--space-8);
+  }
+
+  .cta p {
+    margin-inline: auto;
+  }
+
+  .cta .button {
+    margin-top: var(--space-2);
+  }
+
+  @media (max-width: 900px) {
+    .people-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .zones {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .people-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

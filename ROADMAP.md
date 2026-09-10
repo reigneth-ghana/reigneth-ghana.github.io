@@ -20,14 +20,15 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [x] Shared header/nav (`src/components/Header.astro`) and footer (`src/components/Footer.astro`), wired into `BaseLayout.astro`
 - [x] Recurring "band" motif (a solid red bar, referencing banknote banding straps) used under the header and atop the footer
 
-## Phase 2 — Core pages
+## Phase 2 — Core pages ✅ (this update)
 
-- [ ] Home — hero, what Reigneth does, why choose them, quick links to services
-- [ ] Services — Shrink Wrap Machines, Bank Note Banding Machines, Coin Counting Machines
+- [x] Home — hero, what Reigneth does, why choose them, quick links to services
+- [x] Services — Shrink Wrap Machines, Bank Note Banding Machines, Coin Counting Machines
       (content sourced from the service profile document)
-- [ ] About / Team — leadership (CEO, MD, COO, Director of Finance) and technicians
+- [x] About / Team — leadership (CEO, MD, COO, Director of Finance) and technicians
       (Southern Zone / Northern Zone), nationwide coverage messaging
-- [ ] Contact — contact details / form (need: phone, email, physical address, social links)
+- [x] Contact — form + info layout in place; phone/email/address are still
+      placeholders (see open questions)
 
 ## Phase 3 — Downloads / Resources
 
