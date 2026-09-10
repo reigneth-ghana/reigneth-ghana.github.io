@@ -1,0 +1,40 @@
+name: Build and Commit Docs
+
+on:
+  push:
+    branches:
+      - main
+
+# Grant permissions to write commits back to the repo
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/node-core@v4
+        with:
+          node-version: "22.12.0"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Commit and push docs
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Stage the docs folder
+          git add docs/
+
+          # Commit only if there are changes
+          git diff --staged --quiet || (git commit -m "chore: build static site to docs [skip ci]" && git push)
