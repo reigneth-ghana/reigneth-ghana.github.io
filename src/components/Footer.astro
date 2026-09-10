@@ -38,6 +38,14 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="site-footer__col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/downloads">Downloads</a></li>
+        <li><a href="/downloads">Equipment spec sheet</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
       <h4>Coverage</h4>
       <ul class="site-footer__zones">
         <li>Southern Zone technicians</li>
@@ -62,7 +70,7 @@ const year = new Date().getFullYear();
 
   .site-footer__grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
     gap: var(--space-4);
     padding-block: var(--space-6) var(--space-4);
   }
@@ -123,13 +131,19 @@ const year = new Date().getFullYear();
     margin: 0;
   }
 
-  @media (max-width: 780px) {
+  @media (max-width: 940px) {
     .site-footer__grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
     }
 
     .site-footer__about {
       grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 780px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr 1fr;
     }
   }
 

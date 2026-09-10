@@ -30,11 +30,17 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [x] Contact — form + info layout in place; phone/email/address are still
       placeholders (see open questions)
 
-## Phase 3 — Downloads / Resources
+## Phase 3 — Downloads / Resources ✅ (this update)
 
-- [ ] Decide which materials go public (e.g. service profile PDF, spec sheets)
-- [ ] Downloads page with a simple card/list layout
-- [ ] Confirm file hosting approach (in-repo `public/docs` vs. external)
+- [x] Decide which materials go public — the full service profile PDF stays
+      internal for now; a public equipment spec sheet (specs only, no
+      team/leadership info) was created and published instead
+- [x] Downloads page (`/downloads`) with a simple card/list layout, wired
+      into header nav and footer
+- [x] File hosting approach confirmed: in-repo `public/docs`
+- [ ] Full service profile PDF as a public download (deferred — see open questions)
+- [ ] Additional categories as they're ready: banding machine parts, coin
+      counters, scanners
 
 ## Phase 4 — Polish & QA
 
@@ -54,5 +60,7 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 ### Open questions to resolve as we go
 
 - Contact details for the Contact page
-- Whether the service profile PDF (and any other docs) should be public
+- Whether/when the full service profile PDF (with team & company info) goes public
 - Any additional product photos/logo variants beyond what's been uploaded so far
+- Content and files for the remaining Downloads categories (banding machine
+  parts, coin counters, scanners) as they're developed

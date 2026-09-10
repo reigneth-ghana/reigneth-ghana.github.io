@@ -1,0 +1,158 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface DownloadItem {
+  category: string;
+  title: string;
+  description: string;
+  href: string;
+  fileType: string;
+  fileSize: string;
+}
+
+const downloads: DownloadItem[] = [
+  {
+    category: "Equipment",
+    title: "Equipment Spec Sheet",
+    description:
+      "Shrink wrap, banknote banding, and coin counting equipment — models, features, and specs at a glance.",
+    href: "/docs/reigneth-equipment-spec-sheet.pdf",
+    fileType: "PDF",
+    fileSize: "6.5 KB",
+  },
+];
+---
+
+<BaseLayout title="Downloads" activePath="/downloads">
+  <main class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Resources</p>
+      <h1>Downloads</h1>
+      <p class="page-head__lede">
+        Spec sheets and reference material for the equipment we supply and
+        maintain. More documents — covering banding machine parts, coin
+        counters, and scanners — will be added here over time.
+      </p>
+    </header>
+
+    <section class="download-grid">
+      {
+        downloads.map((d) => (
+          <article class="download-card">
+            <p class="download-card__category">{d.category}</p>
+            <h3>{d.title}</h3>
+            <p class="download-card__desc">{d.description}</p>
+            <div class="download-card__foot">
+              <span class="download-card__meta">
+                {d.fileType} &middot; {d.fileSize}
+              </span>
+              <a href={d.href} class="button button--primary" download>
+                Download
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </section>
+
+    <section class="wrap cta">
+      <h2>Looking for something not listed here?</h2>
+      <p>
+        Get in touch and we'll send over the spec sheets, manuals, or
+        documentation you need.
+      </p>
+      <a href="/contact" class="button button--primary">Contact us</a>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-brand-red);
+    margin-bottom: var(--space-2);
+  }
+
+  .page-head {
+    padding-block: var(--space-6) var(--space-4);
+    max-width: 44rem;
+  }
+
+  .page-head__lede {
+    font-size: var(--text-lg);
+  }
+
+  .download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: var(--space-3);
+    padding-block: var(--space-2) var(--space-6);
+  }
+
+  .download-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-top: var(--band-width) solid var(--color-brand-red);
+    border-radius: 4px;
+    padding: var(--space-3);
+  }
+
+  .download-card__category {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    margin-bottom: var(--space-1);
+  }
+
+  .download-card h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-1);
+  }
+
+  .download-card__desc {
+    font-size: var(--text-sm);
+    flex: 1;
+  }
+
+  .download-card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .download-card__meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-ink-soft);
+  }
+
+  .cta {
+    text-align: center;
+    padding-block: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .cta p {
+    margin-inline: auto;
+  }
+
+  .cta .button {
+    margin-top: var(--space-2);
+  }
+
+  @media (max-width: 480px) {
+    .download-card__foot {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
