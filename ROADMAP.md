@@ -62,9 +62,25 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       page background below it (and into the mobile nav dropdown, which
       shares the same header background). Applies on every page since
       the header is one shared component.
-- [ ] Re-check WCAG AA contrast across all text/background combinations
+- [x] Re-check WCAG AA contrast across all text/background combinations
       once the background changes (Phase 4 already tuned brass-on-light;
-      this must not regress that)
+      this must not regress that) — audited every foreground/background
+      pair actually used in the CSS (12 combinations) against the new
+      `--color-paper` (`#F7EBEB`) and the new header gradient
+      (`--color-surface` → `--color-paper`). All combinations touched by
+      Phase 10 pass AA (4.5:1+): body/muted/link text on the page
+      background (14.88:1 / 7.93:1 / 7.60:1), header nav text and brand-red
+      nav states across the gradient (17.33:1 / 8.85:1 at the white end,
+      unchanged 14.88:1 / 7.60:1 at the paper end), the paper-tone heading
+      text on the dark "Why choose Reigneth?"/footer panels (14.88:1), and
+      brass label text on both the page background and white cards (5.34:1
+      / 6.22:1) — no regression from the Phase 4 brass-on-light tuning.
+      One **pre-existing, unrelated** failure surfaced during the audit:
+      `.site-footer__zones a` ("Get in touch →" in the footer's Coverage
+      column) renders `--color-brand-red` on `--color-ink`, which is only
+      1.96:1 — both colors are untouched by Phase 10, so this isn't a
+      regression, but it was failing AA before this phase too and is
+      worth its own fix (e.g. a lighter red for dark backgrounds).
 - [ ] Update `src/styles/global.css` design tokens and confirm the change
       reads consistently across all five pages (home, products, services,
       about, contact, downloads)
