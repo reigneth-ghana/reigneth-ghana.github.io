@@ -30,7 +30,7 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [x] Contact — form + info layout in place; phone/email/address are still
       placeholders (see open questions)
 
-## Phase 11 — Mobile UX pass (in progress)
+## Phase 11 — Mobile UX pass (in progress) (this update)
 
 - [x] Audit current mobile experience end-to-end (not just the 320–1440px
       overflow check from Phase 4) — nav, hero, product grids, tables/specs,
@@ -98,7 +98,7 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       (32px) means the close button can render partly outside the
       viewport's visible area above the image — flagging for the Task 4
       device spot-check rather than fixing blind here.
-- [ ] Fix identified layout/usability issues (spacing, text sizing, image
+- [x] Fix identified layout/usability issues (spacing, text sizing, image
       cropping, card stacking, anything that feels cramped or misaligned
       on small screens) — tackle in this order: (1) tap targets — bump
       the header toggle and lightbox controls to 44×44px and give the
@@ -106,8 +106,68 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       responsive type scale for `h1`/`h2` so headings don't dominate a
       320–375px viewport, (3) the `.model-card img` vs `.product img`
       height inconsistency on mobile
-- [ ] Re-verify touch target sizes and hamburger menu behavior introduced
+      (this update)
+      — **(1) Tap targets, all four fixed:**
+      `Header.astro` `.site-header__toggle` is now `2.75rem × 2.75rem`
+      (44×44px, was 40×40px). `products.astro` `.lightbox__close` is
+      now `2.75rem × 2.75rem` (was 36px) and `.lightbox__nav`
+      (prev/next) is now `2.75rem × 2.75rem` (was 40px); their
+      `top: -2.5rem` repositioning at the 860px breakpoint is
+      untouched, left for the Task 4 device spot-check as originally
+      flagged. `contact.astro` form fields (`input`/`select`/`textarea`)
+      now have `min-height: 2.75rem` alongside the existing padding, so
+      the 44px floor holds regardless of browser form-control
+      line-height; `textarea` additionally keeps its own
+      `min-height: 8rem` so the floor doesn't shrink the 5-row default.
+      `Footer.astro` nav links (`.site-footer a`) now get
+      `padding-block: 0.7rem` and `display: inline-block` (computes to
+      ~45px with `--text-sm`'s inherited line-height, up from ~30px);
+      the list's own `gap` dropped to `0` since the link padding now
+      provides the vertical spacing — non-link Coverage `<li>` text
+      (zone names) is unaffected since the padding is scoped to `a`.
+      **(2) Responsive type scale:** `--text-2xl` and `--text-3xl` in
+      `global.css` are now `clamp()` expressions instead of fixed
+      values — `--text-3xl` (every page's `h1`) runs 30px→48px and
+      `--text-2xl` (every `h2`) runs 26px→36px, both bottoming out at
+      their mobile minimum by 320px and reaching their old fixed
+      values only above roughly 900–1050px viewport width. `h3`
+      (`--text-xl`) was left as a fixed value — it wasn't flagged in
+      the audit and doesn't dominate the viewport the way `h1`/`h2` do.
+      **(3) Image height inconsistency:** `products.astro`'s existing
+      `max-width: 720px` query already bumped `.product img` to
+      `10rem`; `.model-card img` is now included in that same rule, so
+      both grow to `10rem` together once stacked to a single column on
+      a phone instead of `.model-card img` staying fixed at `8rem`.
+      Verified with a clean `npm run build` after each change — no
+      build errors.
+- [x] Re-verify touch target sizes and hamburger menu behavior introduced
       in Phase 4 still hold up under the fixes
+      (this update)
+      — **Touch targets, re-verified after Task 2:** header toggle
+      44×44px, lightbox close/prev/next 44×44px, contact form fields
+      floor at 44px via `min-height`, footer links ~45px via
+      `padding-block`, mobile nav links unchanged at ~54.5px (already
+      passing before Task 2, confirmed still passing). **One
+      regression found and fixed:** the Task 2 height bump on
+      `.lightbox__close` (36px → 44px) wasn't matched by its
+      `≤860px` breakpoint override, which still repositioned it with
+      the old `top: -2.5rem` offset — sized for the old 36px button,
+      it left the new 44px button overlapping 4px into the image at
+      that breakpoint. Changed the override to `top: -2.75rem` (same
+      as the default, flush with zero overlap) and removed the
+      now-redundant media-query rule entirely, so one value governs
+      the offset everywhere. **Hamburger menu behavior, re-verified
+      unaffected:** no JS was touched by Task 2, only CSS sizing —
+      confirmed by re-reading `Header.astro`'s script: open/close
+      toggle, Escape-to-close with focus return to the toggle button,
+      link-tap-closes-menu, and the `matchMedia("(min-width: 1060px)")`
+      listener that force-closes the menu if the viewport grows past
+      the breakpoint are all untouched and still wired to the same
+      `#site-header`/`#primary-nav` elements. The toggle button's 4px
+      size increase sits inside a wrapping flex row with room to
+      spare down to 320px (checked against the brand logo + gap, since
+      the brand name itself already hides below 380px), so no overflow
+      introduced. Verified with a clean `npm run build`.
 - [ ] Spot-check on at least one real device or device emulator per major
       breakpoint, not just browser dev tools
 
@@ -162,7 +222,7 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       `downloads`) or layout (`BaseLayout.astro`) sets its own page-level
       background, so the tint cascades identically everywhere with no
       per-page overrides to update. Confirmed with a clean `npm run
-  build` and a repo-wide search for the old flat grey (`#EFEFED`) —
+build` and a repo-wide search for the old flat grey (`#EFEFED`) —
       no remaining references. The header gradient (Task 2) and the
       footer link fix (Task 3) are the only other places color tokens
       needed touching for this phase.
