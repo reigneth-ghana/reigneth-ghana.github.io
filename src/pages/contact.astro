@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 // Confirmed contact details.
-const phone = "+233 30 222 5984";
+const phones = ["+233 30 222 5984", "+233 24 206 2091", "+233 26 363 7875"];
 const email = "reigneth1987@yahoo.com";
 const address = "Opp. YWCA, Adabraka, Accra, Ghana";
 ---
@@ -26,7 +26,13 @@ const address = "Opp. YWCA, Adabraka, Accra, Ghana";
         <ul class="info-list">
           <li>
             <span class="info-list__label">Phone</span>
-            <a href={`tel:${phone.replace(/\s+/g, "")}`}>{phone}</a>
+            <span class="info-list__multi">
+              {
+                phones.map((phone) => (
+                  <a href={`tel:${phone.replace(/\s+/g, "")}`}>{phone}</a>
+                ))
+              }
+            </span>
           </li>
           <li>
             <span class="info-list__label">Email</span>
@@ -150,6 +156,12 @@ const address = "Opp. YWCA, Adabraka, Accra, Ghana";
     text-transform: uppercase;
     letter-spacing: 0.04em;
     color: var(--color-brass-text);
+  }
+
+  .info-list__multi {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
   .contact-form {
