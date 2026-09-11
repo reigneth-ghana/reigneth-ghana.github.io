@@ -30,14 +30,82 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [x] Contact — form + info layout in place; phone/email/address are still
       placeholders (see open questions)
 
-## Phase 11 — Mobile UX pass (planned)
+## Phase 11 — Mobile UX pass (in progress)
 
-- [ ] Audit current mobile experience end-to-end (not just the 320–1440px
+- [x] Audit current mobile experience end-to-end (not just the 320–1440px
       overflow check from Phase 4) — nav, hero, product grids, tables/specs,
       forms, tap targets, and image scaling on real phone widths
+      (this update)
+      — Code-level audit across all six pages/components at real phone
+      widths (320/360/375/390/414/430px), since no physical device or
+      emulator is available in this build environment (same constraint
+      noted in Phase 4/5). Findings, in the order requested:
+      **Tap targets** (the main gap found): - `Header.astro` `.site-header__toggle` (hamburger button) is a
+      fixed 2.5rem × 2.5rem (40×40px) — under the 44×44px minimum. - `products.astro` lightbox controls are undersized: `.lightbox__close`
+      is 2.25rem (36px), `.lightbox__nav--prev`/`--next` are 2.5rem
+      (40px) — both below 44px, and they're the only way to close or
+      page through the product photo zoom on a phone (no swipe gesture). - `contact.astro` form fields (`input`, `select`, `textarea`) use
+      `padding: 0.6rem 0.75rem` — computed height lands right at the
+      ~44px line depending on the browser's default form-control
+      line-height, so it's not a clear failure but has no margin either;
+      worth an explicit `min-height` rather than relying on padding. - `Footer.astro` nav links (`.site-footer a`) have no block padding
+      of their own — just `gap: 0.6rem` between list items — so the
+      effective vertical tap target is closer to ~30px than 44px. - By contrast, `.button` (used for all primary CTAs, including the
+      contact form's submit) computes to ~47px tall from its
+      `0.7rem` padding + text line-height, and the open mobile nav's
+      `.site-header__nav a` links get `padding-block: var(--space-2)`
+      (16px), landing well over 44px — so this is isolated to the four
+      controls above, not a site-wide pattern.
+      **Text sizing**: no responsive type scale exists anywhere in
+      `global.css` — `--text-3xl` (48px, used for every page's `h1`) and
+      `--text-2xl` (36px, every `h2`) are fixed values with no `clamp()`
+      and no media-query override. Not broken (headings just wrap to
+      several lines on a 320–375px screen), but it's the most likely
+      source of the "feels cramped" complaint Task 2 is meant to address,
+      since a 48px heading eats a large share of the viewport on a phone.
+      **Nav**: hamburger menu itself (open/close, focus trap via Escape,
+      link-tap-closes-menu, `matchMedia` reset above 1060px) all check
+      out logically; the only nav issue is the 40px toggle button above.
+      **Hero** (`index.astro`): stacks correctly under 900px, image
+      reorders above the copy, aspect ratio holds via the `width`/`height`
+      attributes (no distortion). No issues found.
+      **Product grids** (`products.astro`): `.model-grid` steps 3 → 2
+      (860px) → 1 (720px) columns cleanly with no overflow at any phone
+      width. One inconsistency: `.model-card img` stays a fixed `8rem`
+      (128px) tall at every breakpoint, while the nearby `.product img`
+      (single-model layout) grows from `8rem` to `10rem` under 720px —
+      minor, but means photos in the multi-model grid look small
+      relative to their card once stacked to 1 column on a phone.
+      **Tables/specs**: no literal `<table>` elements on the site — the
+      spec content is the `<ul>` lists inside `.model-card`/`.product`
+      bodies. These already use `--text-xs`/`--text-sm` with generous
+      `line-height`/`gap` and stack fine down to 320px; no issues found.
+      **Forms** (`contact.astro`): layout itself (label-above-input,
+      single column, `select` and `textarea` sized like the text inputs)
+      holds up down to 320px with no overflow. The only issue is the tap
+      target sizing noted above; 16px input `font-size` is correctly kept
+      (prevents iOS Safari's auto-zoom-on-focus).
+      **Image scaling**: global `img { max-width: 100%; display: block }`
+      plus explicit `width`/`height` attributes on every `<img>` (so the
+      browser reserves the right aspect ratio and there's no layout
+      shift) is applied consistently across hero, cards, model photos,
+      and the lightbox. No cropping or distortion issues found at any
+      width tested.
+      **One more spot-checked while auditing the lightbox**: on a short
+      viewport (e.g. a phone in landscape, or a small phone with the
+      browser chrome visible), `.lightbox__close`'s `top: -2.5rem`
+      offset combined with the lightbox's `padding: var(--space-4)`
+      (32px) means the close button can render partly outside the
+      viewport's visible area above the image — flagging for the Task 4
+      device spot-check rather than fixing blind here.
 - [ ] Fix identified layout/usability issues (spacing, text sizing, image
       cropping, card stacking, anything that feels cramped or misaligned
-      on small screens)
+      on small screens) — tackle in this order: (1) tap targets — bump
+      the header toggle and lightbox controls to 44×44px and give the
+      form fields/footer links explicit min-height/padding, (2) a
+      responsive type scale for `h1`/`h2` so headings don't dominate a
+      320–375px viewport, (3) the `.model-card img` vs `.product img`
+      height inconsistency on mobile
 - [ ] Re-verify touch target sizes and hamburger menu behavior introduced
       in Phase 4 still hold up under the fixes
 - [ ] Spot-check on at least one real device or device emulator per major
@@ -94,7 +162,7 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       `downloads`) or layout (`BaseLayout.astro`) sets its own page-level
       background, so the tint cascades identically everywhere with no
       per-page overrides to update. Confirmed with a clean `npm run
-    build` and a repo-wide search for the old flat grey (`#EFEFED`) —
+  build` and a repo-wide search for the old flat grey (`#EFEFED`) —
       no remaining references. The header gradient (Task 2) and the
       footer link fix (Task 3) are the only other places color tokens
       needed touching for this phase.
