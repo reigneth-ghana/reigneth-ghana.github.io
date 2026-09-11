@@ -11,7 +11,7 @@
   --color-brand-red-dark: #6e0000;
   --color-ink: #1c1a1a;
   --color-ink-soft: #4a4744;
-  --color-paper: #efefed;
+  --color-paper: #f7ebeb; /* Phase 10: warm tint blended from --color-brand-red into white, instead of a neutral grey */
   --color-surface: #ffffff;
   --color-brass: #b08d3e;
   --color-brass-text: #7a5c1c; /* darker brass for text on light backgrounds — passes WCAG AA (4.5:1+) */

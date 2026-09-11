@@ -30,6 +30,37 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [x] Contact — form + info layout in place; phone/email/address are still
       placeholders (see open questions)
 
+## Phase 11 — Mobile UX pass (planned)
+
+- [ ] Audit current mobile experience end-to-end (not just the 320–1440px
+      overflow check from Phase 4) — nav, hero, product grids, tables/specs,
+      forms, tap targets, and image scaling on real phone widths
+- [ ] Fix identified layout/usability issues (spacing, text sizing, image
+      cropping, card stacking, anything that feels cramped or misaligned
+      on small screens)
+- [ ] Re-verify touch target sizes and hamburger menu behavior introduced
+      in Phase 4 still hold up under the fixes
+- [ ] Spot-check on at least one real device or device emulator per major
+      breakpoint, not just browser dev tools
+
+## Phase 10 — Theme: background blended with logo (in progress)
+
+- [x] Move the site background off the neutral `--color-paper` grey toward
+      something that reads as drawn from the logo itself (brand red), while
+      keeping body text on a light/near-white surface for readability —
+      `--color-paper` is now `#F7EBEB`, an ~8% blend of `--color-brand-red`
+      into white, instead of the old flat grey `#EFEFED`. Body copy still
+      sits on `--color-ink`/`--color-ink-soft`, unaffected.
+- [ ] Explore options: a subtle red-tinted page background, a red gradient
+      treatment behind the hero/header only, or a warmer paper tone mixed
+      from the brand red — pick one direction and apply consistently
+- [ ] Re-check WCAG AA contrast across all text/background combinations
+      once the background changes (Phase 4 already tuned brass-on-light;
+      this must not regress that)
+- [ ] Update `src/styles/global.css` design tokens and confirm the change
+      reads consistently across all five pages (home, products, services,
+      about, contact, downloads)
+
 ## Phase 9 — Downloads content expansion ✅ (this update)
 
 - [x] Added three new public downloads alongside the existing spec sheet:
