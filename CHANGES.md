@@ -1,3 +1,47 @@
+# Phase 6 — Products / Services split
+
+## Why
+
+The service profile document mixed actual equipment (machines, specs,
+photos) in with the company's service offering (installation, repairs,
+maintenance) under one "Services" page. Asked for a separate Products tab
+so equipment and services read as two distinct things.
+
+## What changed
+
+- **New `src/pages/products.astro`** — the equipment catalog moved here
+  wholesale from the old `services.astro`: Ladypack, Adpak/Smipack SL
+  Series, Akebono OB-360, Mabas SBM-90, Coin 100/120, plus the shrink-film
+  note and a new banding bands/tape note. Same anchor ids (`#shrink-wrap`,
+  `#banknote-banding`, `#coin-counting`) as before, just on `/products` now.
+- **Rewrote `src/pages/services.astro`** — now about the service work
+  itself: three "Specialized Services" cards (still using the
+  `#shrink-wrap` / `#banknote-banding` / `#coin-counting` ids, but on this
+  page they describe install/repair/maintenance, not specs) each linking
+  over to the matching `/products` section, plus a "How we work" strip
+  (Supply → Installation → Repairs & Maintenance → Nationwide Support).
+- **`src/components/Header.astro`** — added "Products" to the primary nav
+  (Home, Products, Services, Downloads, About, Contact). Widened the
+  mobile-menu breakpoint from 960px to 1060px since a 6th link needs more
+  room than the 5-link layout the previous breakpoint was tuned for.
+- **`src/components/Footer.astro`** — added a "Products" nav column
+  (linking to the `/products` anchors) and pointed the existing "Services"
+  column at the `/services` anchors instead. Footer grid widened from 5 to
+  6 columns, with the collapse breakpoint bumped from 940px to 1080px to
+  match.
+- **`src/pages/index.astro`** — the "What we do" cards and the hero's
+  secondary button now point at `/products` (they're equipment tiles), with
+  a line in the section intro linking over to `/services` for the
+  maintenance offering.
+
+## Not changed
+
+- `downloads.astro` and the public equipment spec sheet — untouched, still
+  covers all the same equipment either way.
+- `about.astro`, `contact.astro` — untouched.
+
+---
+
 # Phase 5 — Deployment
 
 ## Starting point

@@ -1,21 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const services = [
+const products = [
   {
-    href: "/services#shrink-wrap",
+    href: "/products#shrink-wrap",
     title: "Shrink Wrap Machines",
     copy: "High-quality shrink wrap machines for secure, efficient product packaging — supply, installation, repairs and routine maintenance.",
     img: "/images/products/product-2.jpg",
   },
   {
-    href: "/services#banknote-banding",
+    href: "/products#banknote-banding",
     title: "Bank Note Banding Machines",
     copy: "Advanced banknote banding machines supplied and maintained for banks across Ghana, streamlining cash management.",
     img: "/images/products/mabas-banding.jpg",
   },
   {
-    href: "/services#coin-counting",
+    href: "/products#coin-counting",
     title: "Coin Counting Machines",
     copy: "Fast, accurate single-denomination coin counters built for continuous, high-volume processing.",
     img: "/images/products/coin-counter.jpg",
@@ -59,8 +59,8 @@ const reasons = [
           <div class="hero__actions">
             <a href="/contact" class="button button--primary">Request a quote</a
             >
-            <a href="/services" class="button button--ghost"
-              >Explore our services</a
+            <a href="/products" class="button button--ghost"
+              >Browse our products</a
             >
           </div>
         </div>
@@ -81,18 +81,20 @@ const reasons = [
         <p>
           We supply and maintain the essential equipment banks and businesses
           rely on daily — from packaging machinery to currency-handling systems
-          — backed by nationwide technical support.
+          — backed by nationwide technical support. See the full
+          <a href="/services">installation, repair, and maintenance services</a>
+          we provide alongside every product.
         </p>
       </div>
 
       <div class="cards">
         {
-          services.map((s) => (
-            <a class="card" href={s.href}>
-              <img src={s.img} alt="" width="400" height="260" />
+          products.map((p) => (
+            <a class="card" href={p.href}>
+              <img src={p.img} alt="" width="400" height="260" />
               <div class="card__body">
-                <h3>{s.title}</h3>
-                <p>{s.copy}</p>
+                <h3>{p.title}</h3>
+                <p>{p.copy}</p>
                 <span class="card__link">Learn more &rarr;</span>
               </div>
             </a>

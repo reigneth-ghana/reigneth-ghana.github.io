@@ -1,164 +1,104 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const shrinkWrapMachines = [
+const specialties = [
   {
-    name: "Ladypack Shrink Wrap Machine",
-    img: "/images/products/product-2.jpg",
-    copy: "A compact, angular packaging machine with a 90&deg; heating oven, built to provide high-quality packaging with PVC, Polypropylene, Polyolefin, or Polyethylene film.",
-    specs: [
-      "Impulse sealing system for centre-folded roll film",
-      "Nickel-chrome blade cuts and seals the film",
-      "Motorized conveyor belt feeds items into the shrink tunnel",
-      "Shrink tunnel heated by armored heaters",
-    ],
+    id: "shrink-wrap",
+    title: "Shrink Wrap Machine Services",
+    copy: "We provide high-quality shrink wrap machines designed to protect your products efficiently and effectively. Our team is equipped to handle installations, repairs, and routine maintenance to ensure your operations run smoothly.",
+    linkLabel: "See shrink wrap machines we support",
+    href: "/products#shrink-wrap",
   },
   {
-    name: "Adpak / Smipack SL Series",
-    img: "/images/products/product-3.jpg",
-    copy: "An entry-level L-sealing hood packer for clear-cut market segments, keeping most of the features of the S series at a lower output.",
-    specs: ["Two models available", "Outputs of up to 300 packs/hour"],
+    id: "banknote-banding",
+    title: "Bank Note Banding Machine Services",
+    copy: "Serving all banks across Ghana, we supply and maintain advanced bank note banding machines. These machines ensure the secure and efficient handling of currency, helping banks streamline their cash management processes.",
+    linkLabel: "See banding machines we support",
+    href: "/products#banknote-banding",
+  },
+  {
+    id: "coin-counting",
+    title: "Coin Counting Machine Services",
+    copy: "From setup to routine servicing, we keep coin counting equipment running accurately for gaming, vending, and banking operations that handle bulk batches of coins or tokens.",
+    linkLabel: "See coin counters we support",
+    href: "/products#coin-counting",
   },
 ];
 
-const bandingMachines = [
+const process = [
   {
-    name: "Akebono OB-360 Banding Machine",
-    img: "/images/products/akebono-banding.jpg",
-    copy: "An arch-style tabletop machine for applying 28mm-wide paper bands around small bundled items, suited to low-volume requirements.",
-    specs: [
-      "Up to 30 banding cycles per minute",
-      "Bands packages from 30mm &times; 10mm up to 420mm &times; 210mm",
-      "Works with either paper or film tape, no parts change needed",
-      "New track design supports 60-micron film, cutting cost and waste",
-      "Optional large dispenser available",
-    ],
+    title: "Supply",
+    copy: "We source and supply quality equipment from reputable manufacturers, matched to your volume and budget.",
   },
   {
-    name: "Mabas SBM-90 Banding Machine",
-    img: "/images/products/mabas-banding.jpg",
-    copy: "A heavy-duty automatic banknote banding machine from Mabas Electronics, with an integrated ink-jet band printer.",
-    specs: [
-      "Prints bank name, branch name, operator name and date across 4 lines",
-      "3 lines are operator-configurable (20 characters each)",
-      "Date/time line is system-generated and cannot be edited",
-      "Easy, quick, reliable and productive in daily use",
-    ],
+    title: "Installation",
+    copy: "Our technicians set up and commission your equipment on-site, so it's ready to run from day one.",
+  },
+  {
+    title: "Repairs & Maintenance",
+    copy: "Routine servicing and responsive repairs keep your equipment in optimal condition and minimize downtime.",
+  },
+  {
+    title: "Nationwide Support",
+    copy: "Technicians in both the Southern and Northern zones mean support is never far away, wherever you're located in Ghana.",
   },
 ];
 ---
 
-<BaseLayout title="Services" activePath="/services">
+<BaseLayout
+  title="Services"
+  description="Supply, installation, repairs, and maintenance for shrink wrap machines, bank note banding machines, and coin counting equipment — from Reigneth Company Limited, Ghana."
+  activePath="/services"
+>
   <main class="wrap" id="main-content">
     <header class="page-head">
       <p class="eyebrow">Our Services</p>
-      <h1>Equipment banks and businesses rely on daily</h1>
+      <h1>Installation, repairs, and maintenance you can rely on</h1>
       <p class="page-head__lede">
-        We supply, install, and maintain shrink wrap machines, bank note banding
-        machines, and coin counting machines — serving banks and businesses
-        across Ghana.
+        Beyond supplying quality equipment, we keep it running. Our technicians
+        handle installation, repairs, and routine maintenance for the machines
+        banks and businesses depend on every day — browse the
+        <a href="/products">equipment we support</a> or get in touch for a quote.
       </p>
     </header>
 
-    <section id="shrink-wrap" class="service-block">
-      <h2>Shrink Wrap Machines</h2>
+    <section class="service-block">
+      <h2>Specialized Services</h2>
       <p class="service-block__intro">
-        We provide high-quality shrink wrap machines designed to protect your
-        products efficiently and effectively. Our team is equipped to handle
-        installations, repairs, and routine maintenance to ensure your
-        operations run smoothly.
+        Our primary goal is to ensure that our customers and prospective clients
+        receive the best quality products and unparalleled maintenance services,
+        built on trust, reliability, and satisfaction.
       </p>
 
-      <div class="product-grid">
+      <div class="specialty-grid">
         {
-          shrinkWrapMachines.map((m) => (
-            <article class="product">
-              <img src={m.img} alt={m.name} width="420" height="280" />
-              <div class="product__body">
-                <h3>{m.name}</h3>
-                <p set:html={m.copy} />
-                <ul>
-                  {m.specs.map((s) => (
-                    <li set:html={s} />
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-
-      <div class="note">
-        <h4>Shrink wrap films</h4>
-        <p>
-          Packaging shrink films provide a tight, secure seal that helps prevent
-          tampering or damage during transportation. We supply films made from
-          PVC, Polyolefin, and Polyethylene in a range of thicknesses and sizes
-          to match your product requirements.
-        </p>
-      </div>
-    </section>
-
-    <section id="banknote-banding" class="service-block">
-      <h2>Bank Note Banding Machines</h2>
-      <p class="service-block__intro">
-        Serving all banks across Ghana, we supply and maintain advanced bank
-        note banding machines that ensure secure, efficient currency handling
-        and help streamline cash management processes.
-      </p>
-
-      <div class="product-grid">
-        {
-          bandingMachines.map((m) => (
-            <article class="product">
-              <img src={m.img} alt={m.name} width="420" height="280" />
-              <div class="product__body">
-                <h3>{m.name}</h3>
-                <p set:html={m.copy} />
-                <ul>
-                  {m.specs.map((s) => (
-                    <li set:html={s} />
-                  ))}
-                </ul>
-              </div>
+          specialties.map((s) => (
+            <article id={s.id} class="specialty">
+              <h3>{s.title}</h3>
+              <p>{s.copy}</p>
+              <a href={s.href} class="specialty__link">
+                {s.linkLabel} &rarr;
+              </a>
             </article>
           ))
         }
       </div>
     </section>
 
-    <section id="coin-counting" class="service-block">
-      <h2>Coin Counting Machines</h2>
-      <p class="service-block__intro">
-        Your one-stop-shop partner for banknote and coin processing — built for
-        gaming, vending, banking, or any enterprise that receives bulk batches
-        of identical coins or tokens.
-      </p>
-
-      <div class="product-grid product-grid--single">
-        <article class="product">
-          <img
-            src="/images/products/coin-counter.jpg"
-            alt="Coin 100/120 counting machine"
-            width="420"
-            height="280"
-          />
-          <div class="product__body">
-            <h3>Coin 100/120</h3>
-            <p>
-              A conveniently portable, cost-effective solution for single
-              denomination processing. It processes large quantities of
-              pre-sorted denominations swiftly and accurately.
-            </p>
-            <ul>
-              <li>Easy to set up and maintain</li>
-              <li>Simple double-dial setup for thickness and diameter</li>
-              <li>
-                Continuous counting — the machine can be fed while running
-              </li>
-            </ul>
-          </div>
-        </article>
+    <section class="process-block">
+      <h2>How we work</h2>
+      <div class="process-grid">
+        {
+          process.map((p, i) => (
+            <div class="process-item">
+              <span class="process-item__index">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3>{p.title}</h3>
+              <p>{p.copy}</p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -191,7 +131,8 @@ const bandingMachines = [
     font-size: var(--text-lg);
   }
 
-  .service-block {
+  .service-block,
+  .process-block {
     padding-block: var(--space-6);
     border-top: 1px solid var(--color-border);
   }
@@ -201,71 +142,63 @@ const bandingMachines = [
     margin-bottom: var(--space-4);
   }
 
-  .product-grid {
+  .specialty-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-3);
   }
 
-  .product-grid--single {
-    grid-template-columns: minmax(0, 26rem);
-  }
-
-  .product {
-    display: grid;
-    grid-template-columns: 11rem 1fr;
-    gap: var(--space-3);
+  .specialty {
+    display: flex;
+    flex-direction: column;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
+    border-top: var(--band-width) solid var(--color-brand-red);
     border-radius: 4px;
     padding: var(--space-3);
   }
 
-  .product img {
-    width: 100%;
-    height: 8rem;
-    object-fit: contain;
-    background: var(--color-paper);
-    border-radius: 2px;
-  }
-
-  .product__body h3 {
+  .specialty h3 {
     font-size: var(--text-base);
     margin-bottom: var(--space-1);
   }
 
-  .product__body p {
+  .specialty p {
+    font-size: var(--text-sm);
+    flex: 1;
+  }
+
+  .specialty__link {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-top: var(--space-1);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+  }
+
+  .process-item {
+    border-top: var(--band-width) solid var(--color-brass);
+    padding-top: var(--space-2);
+  }
+
+  .process-item__index {
+    display: block;
+    font-family: var(--font-mono);
+    color: var(--color-brass-text);
     font-size: var(--text-sm);
     margin-bottom: var(--space-1);
   }
 
-  .product__body ul {
-    margin: 0;
-    padding-left: 1.1rem;
-    font-size: var(--text-xs);
-    color: var(--color-ink-soft);
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
+  .process-item h3 {
+    font-size: var(--text-base);
   }
 
-  .note {
-    margin-top: var(--space-3);
-    padding: var(--space-3);
-    background: var(--color-surface);
-    border-left: var(--band-width) solid var(--color-brass);
-    border-radius: 2px;
-  }
-
-  .note h4 {
-    font-family: var(--font-display);
+  .process-item p {
     font-size: var(--text-sm);
-    margin-bottom: var(--space-1);
-  }
-
-  .note p {
-    font-size: var(--text-sm);
-    margin-bottom: 0;
   }
 
   .cta {
@@ -281,17 +214,19 @@ const bandingMachines = [
     margin-top: var(--space-2);
   }
 
-  @media (max-width: 720px) {
-    .product-grid {
+  @media (max-width: 900px) {
+    .specialty-grid {
       grid-template-columns: 1fr;
     }
 
-    .product {
-      grid-template-columns: 1fr;
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .product img {
-      height: 10rem;
+  @media (max-width: 480px) {
+    .process-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

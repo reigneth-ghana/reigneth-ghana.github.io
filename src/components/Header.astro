@@ -7,6 +7,7 @@ const { activePath = "" } = Astro.props;
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "/products", label: "Products" },
   { href: "/services", label: "Services" },
   { href: "/downloads", label: "Downloads" },
   { href: "/about", label: "About" },
@@ -100,7 +101,7 @@ const links = [
   });
 
   // Keep menu state sane if the viewport is resized past the mobile breakpoint.
-  const mobileQuery = window.matchMedia("(min-width: 960px)");
+  const mobileQuery = window.matchMedia("(min-width: 1060px)");
   mobileQuery.addEventListener("change", (event) => {
     if (event.matches) closeMenu();
   });
@@ -244,10 +245,11 @@ const links = [
     }
   }
 
-  /* Below 960px there isn't room for the full name + 5 links + CTA in one
-     row (this used to overflow and overlap around 720–950px), so we switch
-     to a toggleable menu instead of just wrapping everything in place. */
-  @media (max-width: 959px) {
+  /* Below 1060px there isn't room for the full name + 6 links + CTA in one
+     row (this used to overflow and overlap around 720–950px with 5 links;
+     the Products link pushed the safe threshold higher), so we switch to a
+     toggleable menu instead of just wrapping everything in place. */
+  @media (max-width: 1059px) {
     .site-header__toggle {
       display: inline-flex;
     }

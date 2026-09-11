@@ -20,7 +20,7 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [x] Shared header/nav (`src/components/Header.astro`) and footer (`src/components/Footer.astro`), wired into `BaseLayout.astro`
 - [x] Recurring "band" motif (a solid red bar, referencing banknote banding straps) used under the header and atop the footer
 
-## Phase 2 — Core pages ✅ (this update)
+## Phase 2 — Core pages ✅
 
 - [x] Home — hero, what Reigneth does, why choose them, quick links to services
 - [x] Services — Shrink Wrap Machines, Bank Note Banding Machines, Coin Counting Machines
@@ -29,6 +29,23 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       (Southern Zone / Northern Zone), nationwide coverage messaging
 - [x] Contact — form + info layout in place; phone/email/address are still
       placeholders (see open questions)
+
+## Phase 6 — Products / Services split ✅ (this update)
+
+- [x] Split the equipment catalog out of Services into its own `/products`
+      page — Shrink Wrap Machines, Bank Note Banding Machines, Coin Counting
+      Machines, plus consumables notes (films, banding bands/tape)
+- [x] Rewrote `/services` to cover the actual service offering (supply,
+      installation, repairs, routine maintenance, nationwide zone support)
+      instead of duplicating equipment specs, with links across to the
+      matching `/products` section
+- [x] Added "Products" to primary nav (`Header.astro`) and footer nav
+      (`Footer.astro`); widened the header's mobile-menu breakpoint
+      (960px → 1060px) to keep room for the extra link; footer grid updated
+      for the extra column
+- [x] Updated homepage ("What we do" cards, hero secondary button) to point
+      at `/products` instead of `/services` anchors, with a line linking
+      over to `/services` for the maintenance offering
 
 ## Phase 3 — Downloads / Resources ✅ (this update)
 
