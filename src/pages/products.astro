@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const shrinkWrapMachines = [
   {
     name: "Ladypack Shrink Wrap Machine",
-    img: "/images/products/product-2.jpg",
+    img: "/images/products/ladypack-2.jpg",
     copy: "A compact, angular packaging machine with a 90&deg; heating oven, built to provide high-quality packaging with PVC, Polypropylene, Polyolefin, or Polyethylene film.",
     specs: [
       "Impulse sealing system for centre-folded roll film",
@@ -15,7 +15,7 @@ const shrinkWrapMachines = [
   },
   {
     name: "Adpak / Smipack SL Series",
-    img: "/images/products/product-3.jpg",
+    img: "/images/products/smipack-sl45.jpg",
     copy: "An entry-level L-sealing hood packer for clear-cut market segments, keeping most of the features of the S series at a lower output.",
     specs: ["Two models available", "Outputs of up to 300 packs/hour"],
   },
@@ -95,13 +95,22 @@ const bandingMachines = [
       </div>
 
       <div class="note">
-        <h4>Shrink wrap films</h4>
-        <p>
-          Packaging shrink films provide a tight, secure seal that helps prevent
-          tampering or damage during transportation. We supply films made from
-          PVC, Polyolefin, and Polyethylene in a range of thicknesses and sizes
-          to match your product requirements.
-        </p>
+        <img
+          src="/images/products/shrink-film-rolls.jpg"
+          alt="Rolls of clear shrink wrap film"
+          width="220"
+          height="240"
+          class="note__img"
+        />
+        <div class="note__body">
+          <h4>Shrink wrap films</h4>
+          <p>
+            Packaging shrink films provide a tight, secure seal that helps
+            prevent tampering or damage during transportation. We supply films
+            made from PVC, Polyolefin, and Polyethylene in a range of
+            thicknesses and sizes to match your product requirements.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -132,12 +141,21 @@ const bandingMachines = [
       </div>
 
       <div class="note">
-        <h4>Banding bands &amp; tape</h4>
-        <p>
-          Pre-printed and blank paper bands and film tape for banknote banding
-          machines, sized to match your bank's branding and denomination
-          requirements.
-        </p>
+        <img
+          src="/images/products/banding-bands.jpg"
+          alt="Rolls of pre-printed banknote bands"
+          width="220"
+          height="240"
+          class="note__img"
+        />
+        <div class="note__body">
+          <h4>Banding bands &amp; tape</h4>
+          <p>
+            Pre-printed and blank paper bands and film tape for banknote banding
+            machines, sized to match your bank's branding and denomination
+            requirements.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -265,19 +283,31 @@ const bandingMachines = [
 
   .note {
     margin-top: var(--space-3);
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: var(--space-3);
+    align-items: center;
     padding: var(--space-3);
     background: var(--color-surface);
     border-left: var(--band-width) solid var(--color-brass);
     border-radius: 2px;
   }
 
-  .note h4 {
+  .note__img {
+    width: 100%;
+    height: 6rem;
+    object-fit: contain;
+    background: var(--color-paper);
+    border-radius: 2px;
+  }
+
+  .note__body h4 {
     font-family: var(--font-display);
     font-size: var(--text-sm);
     margin-bottom: var(--space-1);
   }
 
-  .note p {
+  .note__body p {
     font-size: var(--text-sm);
     margin-bottom: 0;
   }
@@ -306,6 +336,14 @@ const bandingMachines = [
 
     .product img {
       height: 10rem;
+    }
+
+    .note {
+      grid-template-columns: 1fr;
+    }
+
+    .note__img {
+      height: 8rem;
     }
   }
 </style>

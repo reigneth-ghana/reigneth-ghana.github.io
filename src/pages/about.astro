@@ -17,6 +17,11 @@ const southernZone = [
   { name: "Mr. Francis Alaga", role: "Assistant Technician" },
   { name: "Mr. Bismark Yaw Obeng", role: "Assistant Technician" },
   { name: "Mr. Jeremiah Nortey", role: "Assistant Technician" },
+  {
+    name: "Mr. Khanti Bandeme",
+    role: "Assistant Technician",
+    contact: ["+233 24 206 2091", "+233 26 363 7875"],
+  },
 ];
 
 const northernZone = [
@@ -83,6 +88,13 @@ const northernZone = [
                   <h4>{p.name}</h4>
                   <p>{p.role}</p>
                   {p.note && <p class="person__note">{p.note}</p>}
+                  {p.contact && (
+                    <p class="person__contact">
+                      {p.contact.map((c) => (
+                        <a href={`tel:${c.replace(/\s+/g, "")}`}>{c}</a>
+                      ))}
+                    </p>
+                  )}
                 </div>
               ))
             }
@@ -98,6 +110,13 @@ const northernZone = [
                   <h4>{p.name}</h4>
                   <p>{p.role}</p>
                   {p.note && <p class="person__note">{p.note}</p>}
+                  {p.contact && (
+                    <p class="person__contact">
+                      {p.contact.map((c) => (
+                        <a href={`tel:${c.replace(/\s+/g, "")}`}>{c}</a>
+                      ))}
+                    </p>
+                  )}
                 </div>
               ))
             }
@@ -222,6 +241,24 @@ const northernZone = [
     font-family: var(--font-mono);
     color: var(--color-brass-text) !important;
     margin-top: 0.2rem;
+  }
+
+  .person__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-top: 0.2rem;
+  }
+
+  .person__contact a {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-brand-red);
+  }
+
+  .person__contact a:hover {
+    color: var(--color-brand-red-dark);
   }
 
   .cta {
