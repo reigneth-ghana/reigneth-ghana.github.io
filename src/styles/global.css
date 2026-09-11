@@ -14,6 +14,7 @@
   --color-paper: #efefed;
   --color-surface: #ffffff;
   --color-brass: #b08d3e;
+  --color-brass-text: #7a5c1c; /* darker brass for text on light backgrounds — passes WCAG AA (4.5:1+) */
   --color-border: #ddd6d3;
 
   /* Type */

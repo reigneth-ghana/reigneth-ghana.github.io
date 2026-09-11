@@ -42,12 +42,24 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [ ] Additional categories as they're ready: banding machine parts, coin
       counters, scanners
 
-## Phase 4 — Polish & QA
+## Phase 4 — Polish & QA ✅ (this update)
 
-- [ ] Mobile/responsive pass
-- [ ] Accessibility pass (contrast, focus states, alt text)
-- [ ] SEO basics: meta tags, favicon, Open Graph image, sitemap
-- [ ] Cross-browser check
+- [x] Mobile/responsive pass — fixed a real overflow bug where the header's
+      brand name overlapped the nav around 721–950px widths; replaced the
+      old wrap-everything mobile nav with an accessible hamburger menu
+      (<960px), verified 320px–1440px
+- [x] Accessibility pass — darkened the brass accent for text use
+      (`--color-brass-text`) so role labels, category tags, etc. pass WCAG
+      AA contrast (previously ~2.7–3.1:1 on light backgrounds, now ~5–6:1);
+      added a "Skip to main content" link; added footer `<nav>` landmarks
+- [x] SEO basics — Open Graph/Twitter meta tags, canonical URLs, favicon
+      fallback + apple-touch-icon, a generated branded OG image
+      (`public/images/og/og-image.jpg`), and an XML sitemap via
+      `@astrojs/sitemap` (see open questions re: the placeholder domain)
+- [x] Cross-browser check — reviewed for non-standard CSS/JS (none found)
+      and visually verified in Chromium across breakpoints; no Safari/
+      Firefox/Edge test environment available here, so a manual pass in
+      those browsers before go-live is still recommended
 
 ## Phase 5 — Deployment
 
@@ -64,3 +76,9 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - Any additional product photos/logo variants beyond what's been uploaded so far
 - Content and files for the remaining Downloads categories (banding machine
   parts, coin counters, scanners) as they're developed
+- `astro.config.mjs` `site` is set to the planned GitHub Pages URL
+  (`https://reigneth-ghana.github.io`) so the sitemap/canonical/OG tags have
+  somewhere to point — update this to the real domain once one is confirmed
+  (see Phase 5)
+- Manual QA in Safari/Firefox/Edge before launch (only Chromium was
+  available to test against in this environment)

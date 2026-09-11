@@ -14,7 +14,7 @@ const links = [
 ];
 ---
 
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="wrap site-header__row">
     <a href="/" class="site-header__brand">
       <img
@@ -26,7 +26,17 @@ const links = [
       <span class="site-header__name">Reigneth&nbsp;Company&nbsp;Limited</span>
     </a>
 
-    <nav class="site-header__nav" aria-label="Primary">
+    <button
+      type="button"
+      class="site-header__toggle"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Open menu"
+    >
+      <span class="site-header__toggle-bar" aria-hidden="true"></span>
+    </button>
+
+    <nav class="site-header__nav" aria-label="Primary" id="primary-nav">
       <ul>
         {
           links.map((link) => (
@@ -49,6 +59,53 @@ const links = [
   </div>
 </header>
 
+<script>
+  const header = document.getElementById("site-header");
+  const toggle = header?.querySelector<HTMLButtonElement>(
+    ".site-header__toggle",
+  );
+  const nav = document.getElementById("primary-nav");
+
+  function closeMenu() {
+    header?.classList.remove("is-open");
+    toggle?.setAttribute("aria-expanded", "false");
+    toggle?.setAttribute("aria-label", "Open menu");
+  }
+
+  function openMenu() {
+    header?.classList.add("is-open");
+    toggle?.setAttribute("aria-expanded", "true");
+    toggle?.setAttribute("aria-label", "Close menu");
+  }
+
+  toggle?.addEventListener("click", () => {
+    if (header?.classList.contains("is-open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  nav?.addEventListener("click", (event) => {
+    if ((event.target as HTMLElement)?.tagName === "A") {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && header?.classList.contains("is-open")) {
+      closeMenu();
+      toggle?.focus();
+    }
+  });
+
+  // Keep menu state sane if the viewport is resized past the mobile breakpoint.
+  const mobileQuery = window.matchMedia("(min-width: 960px)");
+  mobileQuery.addEventListener("change", (event) => {
+    if (event.matches) closeMenu();
+  });
+</script>
+
 <style>
   .site-header {
     background: var(--color-surface);
@@ -57,6 +114,7 @@ const links = [
 
   .site-header__row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--space-4);
     padding-block: var(--space-2);
@@ -64,6 +122,7 @@ const links = [
 
   .site-header__brand {
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     gap: var(--space-1);
     color: var(--color-ink);
@@ -79,6 +138,7 @@ const links = [
   }
 
   .site-header__brand img {
+    flex-shrink: 0;
     border-radius: 2px;
   }
 
@@ -111,27 +171,124 @@ const links = [
   }
 
   .site-header__cta {
+    flex-shrink: 0;
     white-space: nowrap;
   }
 
-  @media (max-width: 720px) {
-    .site-header__row {
-      flex-wrap: wrap;
+  .site-header__toggle {
+    display: none;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: auto;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .site-header__toggle-bar,
+  .site-header__toggle-bar::before,
+  .site-header__toggle-bar::after {
+    display: block;
+    width: 1.1rem;
+    height: 2px;
+    background: var(--color-ink);
+    border-radius: 1px;
+  }
+
+  .site-header__toggle-bar {
+    position: relative;
+  }
+
+  .site-header__toggle-bar::before,
+  .site-header__toggle-bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  .site-header__toggle-bar::before {
+    top: -6px;
+  }
+
+  .site-header__toggle-bar::after {
+    top: 6px;
+  }
+
+  .site-header.is-open .site-header__toggle-bar {
+    background: transparent;
+  }
+
+  .site-header.is-open .site-header__toggle-bar::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .site-header.is-open .site-header__toggle-bar::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .site-header__toggle-bar,
+    .site-header__toggle-bar::before,
+    .site-header__toggle-bar::after {
+      transition:
+        top 0.15s ease,
+        transform 0.15s ease,
+        background-color 0.15s ease;
+    }
+  }
+
+  /* Below 960px there isn't room for the full name + 5 links + CTA in one
+     row (this used to overflow and overlap around 720–950px), so we switch
+     to a toggleable menu instead of just wrapping everything in place. */
+  @media (max-width: 959px) {
+    .site-header__toggle {
+      display: inline-flex;
     }
 
-    .site-header__name {
+    .site-header__nav,
+    .site-header__cta {
       display: none;
+      flex-basis: 100%;
     }
 
     .site-header__nav ul {
-      gap: var(--space-2);
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 0;
+      padding-block: var(--space-2) 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .site-header__nav li {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .site-header__nav a {
+      display: block;
+      padding-block: var(--space-2);
     }
 
     .site-header__cta {
-      order: 3;
-      width: 100%;
       justify-content: center;
+      margin-top: var(--space-2);
+      margin-bottom: var(--space-1);
+    }
+
+    .site-header.is-open .site-header__nav,
+    .site-header.is-open .site-header__cta {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .site-header__name {
+      display: none;
     }
   }
 </style>

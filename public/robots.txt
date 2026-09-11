@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reigneth-ghana.github.io/sitemap-index.xml
