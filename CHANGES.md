@@ -69,11 +69,39 @@ certificate automatically after verification), turn it on.
 ~48 hours to fully propagate, so the domain may not resolve immediately
 even once everything above is done correctly.
 
+## Favicons
+
+Found that the site's favicon was still Astro's default starter icon (the
+purple/pink "A" mark) — never actually replaced with the RCL brand since
+Phase 0. Fixed:
+
+- The full logo (with "RCL" text) reads fine down to about 48px, but
+  turns into an illegible smudge at 16–32px — the sizes that actually show
+  up in a browser tab. So the tiny sizes now use a simplified vector mark
+  (just the red hexagon ring, no text) instead of trying to cram the full
+  logo into a handful of pixels.
+- Replaced `public/favicon.svg` with that vector hexagon mark (scales
+  crisply at any size, brand red `#9A0000`).
+- Regenerated `public/favicon.ico` as a proper multi-resolution icon
+  (16/32/48px) from the same mark, replacing the old Astro-default one.
+- Added `public/favicon-16x16.png` and `public/favicon-32x32.png` for
+  browsers that prefer explicit PNG favicons over `.ico`.
+- Left `apple-touch-icon.png` (180×180, added in Phase 4) as-is — the full
+  logo with "RCL" text is legible at that size, so no change needed there.
+- Added the two new PNG `<link>` tags to `BaseLayout.astro` alongside the
+  existing svg/ico/apple-touch-icon links.
+
 ## Changed / added files
 
 - `public/CNAME` — new. Contains `reigneth.org`.
 - `astro.config.mjs` — `site` updated to `https://reigneth.org`.
 - `public/robots.txt` — sitemap URL updated to match.
+- `public/favicon.svg` — replaced with a vector hexagon mark (was Astro's
+  default icon).
+- `public/favicon.ico` — replaced with a proper multi-size (16/32/48px)
+  brand icon (was Astro's default icon).
+- `public/favicon-16x16.png`, `public/favicon-32x32.png` — new.
+- `src/layouts/BaseLayout.astro` — added the two new PNG favicon links.
 
 ## Open items carried to later phases
 
