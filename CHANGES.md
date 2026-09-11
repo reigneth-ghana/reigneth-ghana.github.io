@@ -1,3 +1,92 @@
+# Phase 7 — Product line breakdowns
+
+## Why
+
+Ladypack, Adpak/Smipack, and Akebono each turned out to cover several
+distinct models Reigneth actually stocks, rather than one machine — the
+service profile document's photos and the notes on this update named
+them individually. The single card per brand on `/products` didn't leave
+room to tell them apart, and there was no listing at all for the
+Chinese-manufactured DFM5540/FM5540 banding machines Reigneth also
+supplies alongside the genuine Mabas SBM-90.
+
+## What changed
+
+- **`src/pages/products.astro`** — restructured the Shrink Wrap Machines
+  and Bank Note Banding Machines sections around a new "family" pattern:
+  a brand-level intro paragraph followed by a grid of individual model
+  cards (photo + short spec list each), instead of one card per brand.
+  - **Ladypack** now lists three models: Ladypack 45, Ladypack 65
+    (previously the only Ladypack shown), and Ladypack 110 — photos for
+    the 45 and 110 were cropped from the two smaller machines shown on
+    page 1 of the service profile document (identified from the model
+    numbers stencilled on their legs); the 65 keeps its existing photo.
+  - **Adpak / Smipack SL series** now lists three models: SL45 (existing
+    photo), S560N, and S560NA — photos for the latter two were cropped
+    from page 2 of the service profile document.
+  - **Akebono OB series** now lists OB-360 (existing specs/photo),
+    OB-460, and OB-560 as three arch sizes of the same banding
+    mechanism. No distinct photos exist yet for the 460/560, so all
+    three currently share the OB-360 photo; specs for the 460/560 are
+    described qualitatively (larger arch, higher throughput) rather than
+    with invented numbers, since exact figures weren't available.
+  - **New "Alternative / Budget-Line Banding Machines" listing** — the
+    DFM5540 and FM5540, described as a separate Chinese-manufactured
+    line at a lower price point than the genuine Mabas SBM-90, with an
+    advisory note clarifying they're independently manufactured and that
+    parts/firmware aren't interchangeable with the Mabas. No photos are
+    available for these yet, so this listing is text-only.
+- **New images** — `ladypack-45.jpg`, `ladypack-110.jpg`,
+  `smipack-s560n.jpg`, and `smipack-s560na.jpg`, all cropped and
+  padded from the photos in the service profile PDF (the same source
+  the existing Ladypack 65, SL45, Akebono, and Mabas photos came from).
+- **New styles** — `.family`, `.family__intro`, `.model-grid`,
+  `.model-card`, and `.advisory` added to `products.astro`'s scoped
+  styles, sitting alongside the existing `.product-grid`/`.product`
+  styles used for the single-model Mabas and Coin 100/120 listings
+  (left untouched).
+
+## Not changed
+
+- `services.astro`, `about.astro`, `contact.astro`, `downloads.astro`,
+  `index.astro` — untouched. The equipment-spec content on `/downloads`
+  still covers the same machines at brand level; it can be updated to
+  list individual models in a later pass if wanted.
+- `Header.astro`, `Footer.astro` — no nav changes needed, same anchor
+  ids (`#shrink-wrap`, `#banknote-banding`, `#coin-counting`) still work.
+
+## Placeholder photos
+
+The OB-460, OB-560, DFM5540, and FM5540 don't have real photos yet, so
+rather than reusing the OB-360 photo for models it doesn't actually show
+(which was the original, misleading approach), each of those four now
+renders a dashed-border "Photo coming soon" placeholder box in place of
+an `<img>`, captioned with the exact file path the real photo should be
+dropped in at:
+
+- `public/images/products/akebono-ob460.jpg`
+- `public/images/products/akebono-ob560.jpg`
+- `public/images/products/dfm5540.jpg`
+- `public/images/products/fm5540.jpg`
+
+This is driven by each model's `img` field in `products.astro` — `img:
+null` plus a `placeholderPath` renders the placeholder; setting `img` to
+the real path (once the photo is dropped in at the path above) switches
+it back to a normal photo automatically, no other markup changes needed.
+
+## Open items
+
+- Real photos for the Akebono OB-460, OB-560, DFM5540, and FM5540 —
+  drop them in at the file paths listed above and flip the matching
+  `img: null` to the real path in `products.astro`.
+- Exact arch-size/speed specs for the Akebono OB-460 and OB-560, if
+  Reigneth has manufacturer figures for them — the current copy is
+  intentionally qualitative rather than guessing numbers.
+- Whether the DFM5540/FM5540 should also get their own anchor id and a
+  footer/nav link, if Reigneth wants them easier to link to directly.
+
+---
+
 # Phase 6 — Products / Services split
 
 ## Why

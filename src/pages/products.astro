@@ -1,48 +1,141 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const shrinkWrapMachines = [
+const shrinkWrapFamilies = [
   {
-    name: "Ladypack Shrink Wrap Machine",
-    img: "/images/products/ladypack-2.jpg",
-    copy: "A compact, angular packaging machine with a 90&deg; heating oven, built to provide high-quality packaging with PVC, Polypropylene, Polyolefin, or Polyethylene film.",
-    specs: [
-      "Impulse sealing system for centre-folded roll film",
-      "Nickel-chrome blade cuts and seals the film",
-      "Motorized conveyor belt feeds items into the shrink tunnel",
-      "Shrink tunnel heated by armored heaters",
+    brand: "Ladypack",
+    intro:
+      "A compact, angular packaging machine with a 90&deg; heating oven, built to provide high-quality packaging with PVC, Polypropylene, Polyolefin, or Polyethylene film. An impulse sealing system with a nickel-chrome blade cuts and seals centre-folded roll film, and a motorized conveyor feeds items into a shrink tunnel heated by armored heaters. We supply three sizes to match your throughput:",
+    models: [
+      {
+        name: "Ladypack 45",
+        img: "/images/products/ladypack-45.jpg",
+        specs: [
+          "Smallest footprint in the range &mdash; suited to lower-volume, bench-side packing runs",
+          "Two conveyor-belt cycles: forward-forward or forward-reverse, selectable from the panel",
+          "Handles polyethylene, PVC, polypropylene and technical films",
+        ],
+      },
+      {
+        name: "Ladypack 65",
+        img: "/images/products/ladypack-1.jpg",
+        specs: [
+          "Our most-supplied configuration &mdash; wider sealing table and taller package clearance than the 45",
+          "Same impulse-seal-and-tunnel design, built for steadier daily volumes",
+          "Electronic control with programmable tunnel temperature, belt speed and sealing time",
+        ],
+      },
+      {
+        name: "Ladypack 110",
+        img: "/images/products/ladypack-110.jpg",
+        specs: [
+          "The largest of the three &mdash; wider arch and higher throughput for high-volume floors",
+          "Suited to cash centres and bulk packaging runs where the 45 or 65 would bottleneck",
+          "Same conveyor-fed shrink tunnel design, scaled up",
+        ],
+      },
     ],
   },
   {
-    name: "Adpak / Smipack SL Series",
-    img: "/images/products/smipack-sl45.jpg",
-    copy: "An entry-level L-sealing hood packer for clear-cut market segments, keeping most of the features of the S series at a lower output.",
-    specs: ["Two models available", "Outputs of up to 300 packs/hour"],
+    brand: "Adpak / Smipack SL Series",
+    intro:
+      "The SL series is Smipack's entry-level L-sealing hood packer &mdash; designed for clear-cut market segments with a lower output, while keeping most of the features of the higher-output S series. We supply three models across the range:",
+    models: [
+      {
+        name: "Smipack SL45",
+        img: "/images/products/smipack-sl45.jpg",
+        specs: [
+          "Entry-level SL series &mdash; outputs of up to 300 packs/hour",
+          "Compact single-column hood packer, suited to lighter-duty use",
+        ],
+      },
+      {
+        name: "Smipack S560N",
+        img: "/images/products/smipack-s560n.jpg",
+        specs: [
+          "Part of the S series &mdash; Smipack's core industrial range, for considerably higher throughput than the SL",
+          "Powered take-away conveyor for continuous, hands-off production",
+        ],
+      },
+      {
+        name: "Smipack S560NA",
+        img: "/images/products/smipack-s560na.jpg",
+        specs: [
+          "Same S-series performance as the S560N, in an alternative chassis finish",
+          "Manual or automatic-cycle operation with a powered take-away conveyor",
+        ],
+      },
+    ],
   },
 ];
 
-const bandingMachines = [
+const akebonoModels = {
+  brand: "Akebono OB Series",
+  intro:
+    "An arch-style tabletop machine for applying paper or film bands around small bundled items &mdash; banknotes, brochures, envelopes and similar flat items &mdash; using a heat-sealing system. We supply the OB-360, OB-460 and OB-560, three arch sizes built around the same reliable banding mechanism:",
+  models: [
+    {
+      name: "Akebono OB-360",
+      img: "/images/products/akebono-banding.jpg",
+      specs: [
+        "Up to 30 banding cycles per minute",
+        "Bands packages from 30mm &times; 10mm up to 420mm &times; 210mm",
+        "Works with either paper or film tape, no parts change needed",
+        "New track design supports 60-micron film, cutting cost and waste",
+      ],
+    },
+    {
+      name: "Akebono OB-460",
+      img: null,
+      placeholderPath: "/images/products/akebono-ob460.jpg",
+      specs: [
+        "Same heat-sealing mechanism as the OB-360, stepped up to a larger arch",
+        "Suited to bundles and printed-material runs that exceed the OB-360's capacity",
+        "Either paper or film tape, no parts change needed",
+      ],
+    },
+    {
+      name: "Akebono OB-560",
+      img: null,
+      placeholderPath: "/images/products/akebono-ob560.jpg",
+      specs: [
+        "The largest arch in the range, for higher-volume banding floors",
+        "Same reliable heat-sealing mechanism as the OB-360 and OB-460",
+        "Optional large dispenser available",
+      ],
+    },
+  ],
+};
+
+const mabasModel = {
+  name: "Mabas SBM-90 Banding Machine",
+  img: "/images/products/mabas-banding.jpg",
+  copy: "A heavy-duty automatic banknote banding machine from Mabas Electronics, with an integrated ink-jet band printer.",
+  specs: [
+    "Prints bank name, branch name, operator name and date across 4 lines",
+    "3 lines are operator-configurable (20 characters each)",
+    "Date/time line is system-generated and cannot be edited",
+    "Easy, quick, reliable and productive in daily use",
+  ],
+};
+
+const budgetBandingModels = [
   {
-    name: "Akebono OB-360 Banding Machine",
-    img: "/images/products/akebono-banding.jpg",
-    copy: "An arch-style tabletop machine for applying 28mm-wide paper bands around small bundled items, suited to low-volume requirements.",
+    name: "DFM5540",
+    img: null,
+    placeholderPath: "/images/products/dfm5540.jpg",
     specs: [
-      "Up to 30 banding cycles per minute",
-      "Bands packages from 30mm &times; 10mm up to 420mm &times; 210mm",
-      "Works with either paper or film tape, no parts change needed",
-      "New track design supports 60-micron film, cutting cost and waste",
-      "Optional large dispenser available",
+      "Chinese-manufactured automatic banknote banding machine",
+      "Similar form factor and banding function to the genuine Mabas SBM-90, at a lower price point",
     ],
   },
   {
-    name: "Mabas SBM-90 Banding Machine",
-    img: "/images/products/mabas-banding.jpg",
-    copy: "A heavy-duty automatic banknote banding machine from Mabas Electronics, with an integrated ink-jet band printer.",
+    name: "FM5540",
+    img: null,
+    placeholderPath: "/images/products/fm5540.jpg",
     specs: [
-      "Prints bank name, branch name, operator name and date across 4 lines",
-      "3 lines are operator-configurable (20 characters each)",
-      "Date/time line is system-generated and cannot be edited",
-      "Easy, quick, reliable and productive in daily use",
+      "Chinese-manufactured automatic banknote banding machine",
+      "A step up from the DFM5540 within the same alternative line",
     ],
   },
 ];
@@ -75,24 +168,29 @@ const bandingMachines = [
         efficiently and effectively.
       </p>
 
-      <div class="product-grid">
-        {
-          shrinkWrapMachines.map((m) => (
-            <article class="product">
-              <img src={m.img} alt={m.name} width="420" height="280" />
-              <div class="product__body">
-                <h3>{m.name}</h3>
-                <p set:html={m.copy} />
-                <ul>
-                  {m.specs.map((s) => (
-                    <li set:html={s} />
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))
-        }
-      </div>
+      {
+        shrinkWrapFamilies.map((family) => (
+          <div class="family">
+            <h3>{family.brand}</h3>
+            <p class="family__intro" set:html={family.intro} />
+            <div class="model-grid">
+              {family.models.map((m) => (
+                <article class="model-card">
+                  <img src={m.img} alt={m.name} width="360" height="270" />
+                  <div class="model-card__body">
+                    <h4>{m.name}</h4>
+                    <ul>
+                      {m.specs.map((s) => (
+                        <li set:html={s} />
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))
+      }
 
       <div class="note">
         <img
@@ -121,23 +219,125 @@ const bandingMachines = [
         streamlined cash management, supplied to banks across Ghana.
       </p>
 
-      <div class="product-grid">
-        {
-          bandingMachines.map((m) => (
-            <article class="product">
-              <img src={m.img} alt={m.name} width="420" height="280" />
-              <div class="product__body">
-                <h3>{m.name}</h3>
-                <p set:html={m.copy} />
-                <ul>
-                  {m.specs.map((s) => (
-                    <li set:html={s} />
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))
-        }
+      <div class="family">
+        <h3>{akebonoModels.brand}</h3>
+        <p class="family__intro" set:html={akebonoModels.intro} />
+        <div class="model-grid">
+          {
+            akebonoModels.models.map((m) =>
+              m.img ? (
+                <article class="model-card">
+                  <img src={m.img} alt={m.name} width="360" height="270" />
+                  <div class="model-card__body">
+                    <h4>{m.name}</h4>
+                    <ul>
+                      {m.specs.map((s) => (
+                        <li set:html={s} />
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ) : (
+                <article class="model-card">
+                  <div class="model-card__placeholder">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="28"
+                      height="28"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Zm8 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
+                      />
+                    </svg>
+                    <span>Photo coming soon</span>
+                    <code>{m.placeholderPath}</code>
+                  </div>
+                  <div class="model-card__body">
+                    <h4>{m.name}</h4>
+                    <ul>
+                      {m.specs.map((s) => (
+                        <li set:html={s} />
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ),
+            )
+          }
+        </div>
+      </div>
+
+      <div class="family">
+        <h3>Mabas SBM-90</h3>
+        <div class="product-grid product-grid--single">
+          <article class="product">
+            <img
+              src={mabasModel.img}
+              alt={mabasModel.name}
+              width="420"
+              height="280"
+            />
+            <div class="product__body">
+              <h3>{mabasModel.name}</h3>
+              <p set:html={mabasModel.copy} />
+              <ul>
+                {mabasModel.specs.map((s) => <li set:html={s} />)}
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="family">
+        <h3>Alternative / Budget-Line Banding Machines</h3>
+        <p class="family__intro">
+          For customers who don't need the genuine Mabas SBM-90's integrated
+          band printer, we also supply the DFM5540 and FM5540 &mdash; a
+          separate, Chinese-manufactured line of automatic banknote banding
+          machines at a lower price point.
+        </p>
+        <div class="model-grid model-grid--text">
+          {
+            budgetBandingModels.map((m) => (
+              <article class="model-card">
+                <div class="model-card__placeholder">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="28"
+                    height="28"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Zm8 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
+                    />
+                  </svg>
+                  <span>Photo coming soon</span>
+                  <code>{m.placeholderPath}</code>
+                </div>
+                <div class="model-card__body">
+                  <h4>{m.name}</h4>
+                  <ul>
+                    {m.specs.map((s) => (
+                      <li set:html={s} />
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+        <div class="advisory">
+          <p>
+            <strong>Note:</strong> the DFM5540 and FM5540 are independently manufactured
+            machines and are not Mabas products. Parts, firmware, and service procedures
+            are not interchangeable with the genuine Mabas SBM-90 &mdash; let our
+            technicians know which model you have when ordering spares or requesting
+            service.
+          </p>
+        </div>
       </div>
 
       <div class="note">
@@ -233,6 +433,109 @@ const bandingMachines = [
     margin-bottom: var(--space-4);
   }
 
+  .family {
+    margin-bottom: var(--space-5);
+  }
+
+  .family h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-1);
+  }
+
+  .family__intro {
+    max-width: 42rem;
+    font-size: var(--text-sm);
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-3);
+  }
+
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .model-grid--text {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .model-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .model-card--text {
+    padding: var(--space-3);
+  }
+
+  .model-card img {
+    width: 100%;
+    height: 8rem;
+    object-fit: contain;
+    background: var(--color-paper);
+    border-radius: 2px;
+  }
+
+  .model-card__placeholder {
+    width: 100%;
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    background: var(--color-paper);
+    border: 1px dashed var(--color-brass);
+    border-radius: 2px;
+    color: var(--color-brass-text);
+  }
+
+  .model-card__placeholder span {
+    font-size: var(--text-xs);
+    font-weight: 600;
+  }
+
+  .model-card__placeholder code {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-ink-soft);
+  }
+
+  .model-card h4 {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    margin-bottom: var(--space-1);
+  }
+
+  .model-card ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: var(--text-xs);
+    color: var(--color-ink-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .advisory {
+    margin-top: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-surface);
+    border-left: var(--band-width) solid var(--color-brand-red);
+    border-radius: 2px;
+    font-size: var(--text-sm);
+  }
+
+  .advisory p {
+    margin: 0;
+  }
+
   .product-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -325,8 +628,19 @@ const bandingMachines = [
     margin-top: var(--space-2);
   }
 
+  @media (max-width: 860px) {
+    .model-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 720px) {
     .product-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .model-grid,
+    .model-grid--text {
       grid-template-columns: 1fr;
     }
 

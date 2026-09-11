@@ -30,6 +30,32 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [x] Contact — form + info layout in place; phone/email/address are still
       placeholders (see open questions)
 
+## Phase 7 — Product line breakdowns ✅ (this update)
+
+- [x] Ladypack, Adpak/Smipack SL series, and the Akebono OB series broken
+      out into their individual models on `/products` instead of one card
+      per brand
+- [x] Ladypack: Ladypack 45, Ladypack 65, and Ladypack 110, each with its
+      own photo (cropped from the service profile document) and specs
+- [x] Adpak/Smipack SL series: SL45, S560N, and S560NA, each with its own
+      photo (cropped from the service profile document) and specs
+- [x] Akebono OB series: OB-360, OB-460, and OB-560 as three arch sizes
+      of the same banding mechanism
+- [x] Added a separate "Alternative / Budget-Line Banding Machines"
+      listing for the DFM5540 and FM5540 (Chinese-manufactured, distinct
+      from the genuine Mabas SBM-90), with an advisory note clarifying
+      they're a different product line — parts/firmware aren't
+      interchangeable with the genuine Mabas
+- [x] New `.family` / `.model-grid` styles on `/products` to support a
+      brand with several models, without disturbing the single-model
+      Mabas or Coin 100/120 layout
+- [x] Added a "Photo coming soon" placeholder treatment (dashed box,
+      captioned with the expected file path) for the four models with
+      no real photo yet — OB-460, OB-560, DFM5540, FM5540 — instead of
+      reusing an unrelated photo for them
+- [ ] Swap in real photos for OB-460, OB-560, DFM5540, and FM5540 once
+      available (see CHANGES.md for the exact file paths)
+
 ## Phase 6 — Products / Services split ✅ (this update)
 
 - [x] Split the equipment catalog out of Services into its own `/products`
