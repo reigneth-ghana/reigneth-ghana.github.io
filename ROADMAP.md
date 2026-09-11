@@ -51,9 +51,17 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       `--color-paper` is now `#F7EBEB`, an ~8% blend of `--color-brand-red`
       into white, instead of the old flat grey `#EFEFED`. Body copy still
       sits on `--color-ink`/`--color-ink-soft`, unaffected.
-- [ ] Explore options: a subtle red-tinted page background, a red gradient
+- [x] Explore options: a subtle red-tinted page background, a red gradient
       treatment behind the hero/header only, or a warmer paper tone mixed
-      from the brand red — pick one direction and apply consistently
+      from the brand red — pick one direction and apply consistently.
+      Task 1 already covered the "warmer paper tone" direction site-wide,
+      so this task applied the complementary "gradient behind the header"
+      option: `.site-header` in `src/components/Header.astro` now uses
+      `linear-gradient(180deg, --color-surface 0%, --color-paper 100%)`
+      instead of a flat white fill, so the header fades into the tinted
+      page background below it (and into the mobile nav dropdown, which
+      shares the same header background). Applies on every page since
+      the header is one shared component.
 - [ ] Re-check WCAG AA contrast across all text/background combinations
       once the background changes (Phase 4 already tuned brass-on-light;
       this must not regress that)

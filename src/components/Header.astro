@@ -109,7 +109,14 @@ const links = [
 
 <style>
   .site-header {
-    background: var(--color-surface);
+    /* Phase 10, task 2: soft gradient fading from white into the
+       red-tinted --color-paper tone, so the header blends into the
+       page background instead of sitting on a flat white bar. */
+    background: linear-gradient(
+      180deg,
+      var(--color-surface) 0%,
+      var(--color-paper) 100%
+    );
     border-bottom: var(--band-width) solid var(--color-brand-red);
   }
 
