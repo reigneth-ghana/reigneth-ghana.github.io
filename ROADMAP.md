@@ -53,6 +53,10 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       captioned with the expected file path) for the four models with
       no real photo yet — OB-460, OB-560, DFM5540, FM5540 — instead of
       reusing an unrelated photo for them
+- [x] Fixed gray letterboxing around product photos (was using the page
+      background color instead of white) and restored the missing
+      vertical gap between brand blocks (was referencing a spacing
+      token that doesn't exist in this project's scale)
 - [ ] Swap in real photos for OB-460, OB-560, DFM5540, and FM5540 once
       available (see CHANGES.md for the exact file paths)
 

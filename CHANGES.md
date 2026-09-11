@@ -74,6 +74,27 @@ null` plus a `placeholderPath` renders the placeholder; setting `img` to
 the real path (once the photo is dropped in at the path above) switches
 it back to a normal photo automatically, no other markup changes needed.
 
+## Two follow-up fixes (same phase)
+
+- **Image letterboxing was gray, not white** — `.model-card img`,
+  `.product img`, and `.note__img` all used `background:
+  var(--color-paper)` (`#efefed`, the same warm-gray used for page
+  backgrounds) to fill the space around a `contain`-fit photo. On
+  product photos with white backgrounds, that showed up as a visible
+  gray band around the image. Switched all three to `background:
+  var(--color-surface)` (`#ffffff`) so the letterboxing disappears
+  against the white photos. Left the "Photo coming soon" placeholder
+  boxes on `--color-paper` deliberately — that gray fill is what makes
+  them read as placeholders rather than photos.
+- **No vertical gap between families (e.g. Ladypack and Adpak/Smipack
+  butting up against each other)** — `.family { margin-bottom:
+  var(--space-5); }` referenced a token that doesn't exist in this
+  project's spacing scale (`--space-1` through `--space-4`, then
+  `--space-6`, `--space-8`, `--space-12` — there is no `--space-5`), so
+  the browser silently ignored it and the margin collapsed to zero.
+  Changed to `var(--space-6)` (3rem), a real token, which restores the
+  section-like spacing between each brand's block.
+
 ## Open items
 
 - Real photos for the Akebono OB-460, OB-560, DFM5540, and FM5540 —
