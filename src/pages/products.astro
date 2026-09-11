@@ -415,33 +415,68 @@ const budgetBandingModels = [
         </p>
         <div class="model-grid model-grid--text">
           {
-            budgetBandingModels.map((m) => (
-              <article class="model-card">
-                <div class="model-card__placeholder">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="28"
-                    height="28"
-                    aria-hidden="true"
+            budgetBandingModels.map((m) =>
+              m.images ? (
+                <article class="model-card">
+                  <button
+                    type="button"
+                    class="model-card__photo"
+                    data-lightbox
+                    data-images={JSON.stringify(m.images)}
+                    data-name={m.name}
                   >
-                    <path
-                      fill="currentColor"
-                      d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Zm8 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
+                    <img
+                      src={m.images[0]}
+                      alt={m.name}
+                      width="360"
+                      height="270"
                     />
-                  </svg>
-                  <span>Photo coming soon</span>
-                  <code>{m.placeholderPath}</code>
-                </div>
-                <div class="model-card__body">
-                  <h4>{m.name}</h4>
-                  <ul>
-                    {m.specs.map((s) => (
-                      <li set:html={s} />
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))
+                    <span class="zoom-badge" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="14" height="14">
+                        <path
+                          fill="currentColor"
+                          d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14Z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <div class="model-card__body">
+                    <h4>{m.name}</h4>
+                    <ul>
+                      {m.specs.map((s) => (
+                        <li set:html={s} />
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ) : (
+                <article class="model-card">
+                  <div class="model-card__placeholder">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="28"
+                      height="28"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Zm8 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
+                      />
+                    </svg>
+                    <span>Photo coming soon</span>
+                    <code>{m.placeholderPath}</code>
+                  </div>
+                  <div class="model-card__body">
+                    <h4>{m.name}</h4>
+                    <ul>
+                      {m.specs.map((s) => (
+                        <li set:html={s} />
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ),
+            )
           }
         </div>
         <div class="advisory">
