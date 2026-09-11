@@ -5,7 +5,7 @@ const shrinkWrapFamilies = [
   {
     brand: "Ladypack",
     intro:
-      "A compact, angular packaging machine with a 90&deg; heating oven, built to provide high-quality packaging with PVC, Polypropylene, Polyolefin, or Polyethylene film. An impulse sealing system with a nickel-chrome blade cuts and seals centre-folded roll film, and a motorized conveyor feeds items into a shrink tunnel heated by armored heaters. We supply three sizes to match your throughput:",
+      "A compact, angular packaging machine with a 90&deg; heating oven, built to provide high-quality packaging with PVC, Polypropylene, Polyolefin, or Polyethylene film. An impulse sealing system with a nickel-chrome blade cuts and seals centre-folded roll film, and a motorized conveyor feeds items into a shrink tunnel heated by armored heaters. We supply several sizes and configurations to match your throughput:",
     models: [
       {
         name: "Ladypack 45",
@@ -14,6 +14,24 @@ const shrinkWrapFamilies = [
           "Smallest footprint in the range &mdash; suited to lower-volume, bench-side packing runs",
           "Two conveyor-belt cycles: forward-forward or forward-reverse, selectable from the panel",
           "Handles polyethylene, PVC, polypropylene and technical films",
+        ],
+      },
+      {
+        name: "Ladypack 45/A2",
+        img: null,
+        placeholderPath: "/images/products/ladypack-45a2.jpg",
+        specs: [
+          "A2-configuration variant of the Ladypack 45 footprint",
+          "Same impulse-seal-and-tunnel design as the rest of the range",
+        ],
+      },
+      {
+        name: "Ladypack 45N",
+        img: null,
+        placeholderPath: "/images/products/ladypack-45n.jpg",
+        specs: [
+          "N-configuration variant of the Ladypack 45 footprint",
+          "Same impulse-seal-and-tunnel design as the rest of the range",
         ],
       },
       {
@@ -32,6 +50,24 @@ const shrinkWrapFamilies = [
           "The largest of the three &mdash; wider arch and higher throughput for high-volume floors",
           "Suited to cash centres and bulk packaging runs where the 45 or 65 would bottleneck",
           "Same conveyor-fed shrink tunnel design, scaled up",
+        ],
+      },
+      {
+        name: "Ladypack Klok 550",
+        img: null,
+        placeholderPath: "/images/products/ladypack-klok550.jpg",
+        specs: [
+          "Larger-format model in the Ladypack line, for bigger or bulkier items",
+          "Same impulse-seal-and-tunnel technology, scaled up for the 550 size",
+        ],
+      },
+      {
+        name: "Ladypack Table Top",
+        img: null,
+        placeholderPath: "/images/products/ladypack-tabletop.jpg",
+        specs: [
+          "Compact bench/table-top configuration for lower-volume or space-constrained setups",
+          "Same impulse-seal-and-tunnel design as the rest of the range",
         ],
       },
     ],
@@ -174,19 +210,47 @@ const budgetBandingModels = [
             <h3>{family.brand}</h3>
             <p class="family__intro" set:html={family.intro} />
             <div class="model-grid">
-              {family.models.map((m) => (
-                <article class="model-card">
-                  <img src={m.img} alt={m.name} width="360" height="270" />
-                  <div class="model-card__body">
-                    <h4>{m.name}</h4>
-                    <ul>
-                      {m.specs.map((s) => (
-                        <li set:html={s} />
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              ))}
+              {family.models.map((m) =>
+                m.img ? (
+                  <article class="model-card">
+                    <img src={m.img} alt={m.name} width="360" height="270" />
+                    <div class="model-card__body">
+                      <h4>{m.name}</h4>
+                      <ul>
+                        {m.specs.map((s) => (
+                          <li set:html={s} />
+                        ))}
+                      </ul>
+                    </div>
+                  </article>
+                ) : (
+                  <article class="model-card">
+                    <div class="model-card__placeholder">
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="28"
+                        height="28"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Zm8 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
+                        />
+                      </svg>
+                      <span>Photo coming soon</span>
+                      <code>{m.placeholderPath}</code>
+                    </div>
+                    <div class="model-card__body">
+                      <h4>{m.name}</h4>
+                      <ul>
+                        {m.specs.map((s) => (
+                          <li set:html={s} />
+                        ))}
+                      </ul>
+                    </div>
+                  </article>
+                ),
+              )}
             </div>
           </div>
         ))

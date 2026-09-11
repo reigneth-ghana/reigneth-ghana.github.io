@@ -29,7 +29,9 @@ const address = "Opp. YWCA, Adabraka, Accra, Ghana";
             <span class="info-list__multi">
               {
                 phones.map((phone) => (
-                  <a href={`tel:${phone.replace(/\s+/g, "")}`}>{phone}</a>
+                  <fragment>
+                    <a href={`tel:${phone.replace(/\s+/g, "")}`}>{phone}</a>
+                  </fragment>
                 ))
               }
             </span>
