@@ -61,11 +61,20 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       Firefox/Edge test environment available here, so a manual pass in
       those browsers before go-live is still recommended
 
-## Phase 5 — Deployment
+## Phase 5 — Deployment (in progress)
 
-- [ ] GitHub Actions workflow: build with Astro, deploy to GitHub Pages
-- [ ] Custom domain (if/when available) pointed at Pages
-- [ ] Final smoke test on live URL
+- [x] GitHub Actions workflow: builds with Astro (`outDir: docs`) and commits
+      the output to `docs/` on every push to `main`
+      (`.github/workflows/build-docs.yml`); GitHub Pages serves from the
+      `main` branch `/docs` folder. `public/.nojekyll` and the renamed
+      `assets/` output folder (instead of the default `_astro/`) avoid
+      GitHub's Jekyll processing swallowing the build output.
+- [x] Custom domain — `reigneth.org` confirmed and purchased. Added
+      `public/CNAME` (copied into `docs/CNAME` on every build) and updated
+      `astro.config.mjs` / `public/robots.txt` to the real domain. Still
+      needed on GitHub/DNS side — see open questions below.
+- [ ] Final smoke test on live URL — pending DNS propagating and the
+      custom domain going live
 
 ---
 
@@ -76,9 +85,9 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - Any additional product photos/logo variants beyond what's been uploaded so far
 - Content and files for the remaining Downloads categories (banding machine
   parts, coin counters, scanners) as they're developed
-- `astro.config.mjs` `site` is set to the planned GitHub Pages URL
-  (`https://reigneth-ghana.github.io`) so the sitemap/canonical/OG tags have
-  somewhere to point — update this to the real domain once one is confirmed
-  (see Phase 5)
 - Manual QA in Safari/Firefox/Edge before launch (only Chromium was
   available to test against in this environment)
+- DNS for `reigneth.org` and the GitHub Pages "Custom domain" / "Enforce
+  HTTPS" settings still need to be completed on the registrar/GitHub side
+  (see CHANGES.md for the exact records) — nothing in the repo can do this
+  part
