@@ -30,6 +30,33 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [x] Contact — form + info layout in place; phone/email/address are still
       placeholders (see open questions)
 
+## Phase 9 — Downloads content expansion ✅ (this update)
+
+- [x] Added three new public downloads alongside the existing spec sheet:
+      a Company Profile (capabilities/coverage overview, no personnel
+      names — same rule as the deferred internal service profile), an
+      illustrated Product Catalog (real photos for every model we
+      have one for, "photo coming soon" placeholder for OB-460), and a
+      Consumables Reference Sheet (shrink films, banding bands & tape)
+- [x] Expanded the Equipment Spec Sheet from a summary to the full
+      current lineup — all six Ladypack models, all three Smipack SL
+      models, all three Akebono arches (including OB-460), Mabas
+      SBM-90, and the DFM5540/FM5540 budget line with its
+      compatibility advisory
+- [x] All four PDFs share one branding module (`brand.py`, not
+      committed — build-time script) — logo, brand-red header/footer
+      band, page numbers, and a subtle diagonal watermark reading
+      "Reigneth Company Limited" per owner request
+- [x] Downsized product photos before embedding (longest side capped
+      at 700px, re-encoded as JPEG) — cut the Product Catalog from
+      ~5.2MB to ~650KB and the Consumables sheet from ~730KB to ~160KB
+      with no visible quality loss at print size
+- [x] `downloads.astro` updated to list all four documents
+- [x] Confirmed nothing in any of the four PDFs duplicates the
+      internal-only material (leadership/technician names, full
+      service profile) that Phase 3 deliberately kept off the public
+      site
+
 ## Phase 8 — Flagship product & image sourcing ✅ (this update)
 
 - [x] Merged the two empty "Ladypack 45/A2" and "Ladypack 45N" placeholder
@@ -54,7 +81,7 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       owner, image to follow once sourced from the company directly
 - [x] Verified DFM5540/FM5540 (Dofeng) — description confirmed and kept
       as-is per owner; sourced candidate images, not yet downloaded
-- [ ] Swap in real photos for Klok 550, Ladypack Table Top, Akebono OB-460,
+- [x] Swap in real photos for Klok 550, Ladypack Table Top, Akebono OB-460,
       OB-560, DFM5540, and FM5540 once dropped into `public/images/products/`
       (see CHANGES.md for exact source links + filenames)
 
