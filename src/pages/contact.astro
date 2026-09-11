@@ -53,12 +53,7 @@ const address = "Opp. YWCA, Adabraka, Accra, Ghana";
         </ul>
       </div>
 
-      <form
-        class="contact-form"
-        method="post"
-        action={`mailto:${email}`}
-        enctype="text/plain"
-      >
+      <form class="contact-form" id="contact-form">
         <h2>Send a message</h2>
 
         <label>
@@ -103,6 +98,32 @@ const address = "Opp. YWCA, Adabraka, Accra, Ghana";
           This opens your email client to send the message directly to us.
         </p>
       </form>
+
+      <script define:vars={{ email }}>
+        const form = document.getElementById("contact-form");
+        form?.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const data = new FormData(form);
+          const name = (data.get("name") || "").toString().trim();
+          const senderEmail = (data.get("email") || "").toString().trim();
+          const phone = (data.get("phone") || "").toString().trim();
+          const service = (data.get("service") || "").toString().trim();
+          const message = (data.get("message") || "").toString().trim();
+
+          const subject = `Website enquiry from ${name}`;
+          const bodyLines = [
+            `Name: ${name}`,
+            `Email: ${senderEmail}`,
+            phone && `Phone: ${phone}`,
+            service && `Service: ${service}`,
+            "",
+            message,
+          ].filter((line) => line !== false && line !== undefined);
+
+          const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+          window.location.href = mailto;
+        });
+      </script>
     </section>
   </main>
 </BaseLayout>
