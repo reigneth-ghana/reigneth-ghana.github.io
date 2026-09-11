@@ -43,7 +43,7 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [ ] Spot-check on at least one real device or device emulator per major
       breakpoint, not just browser dev tools
 
-## Phase 10 — Theme: background blended with logo (in progress)
+## Phase 10 — Theme: background blended with logo ✅ (this update)
 
 - [x] Move the site background off the neutral `--color-paper` grey toward
       something that reads as drawn from the logo itself (brand red), while
@@ -86,9 +86,18 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       `--color-brand-red` itself is unchanged) for ~5:1 contrast on
       `--color-ink`; the hover state moved from `#c9422e` (~3.5:1) to
       `#eb7a7a` (~6.3:1) so it doesn't regress back below AA.
-- [ ] Update `src/styles/global.css` design tokens and confirm the change
+- [x] Update `src/styles/global.css` design tokens and confirm the change
       reads consistently across all five pages (home, products, services,
       about, contact, downloads)
+      — `--color-paper` (`#F7EBEB`) is set once in `global.css` on `body`;
+      no page (`index`, `products`, `services`, `about`, `contact`,
+      `downloads`) or layout (`BaseLayout.astro`) sets its own page-level
+      background, so the tint cascades identically everywhere with no
+      per-page overrides to update. Confirmed with a clean `npm run
+    build` and a repo-wide search for the old flat grey (`#EFEFED`) —
+      no remaining references. The header gradient (Task 2) and the
+      footer link fix (Task 3) are the only other places color tokens
+      needed touching for this phase.
 
 ## Phase 9 — Downloads content expansion ✅ (this update)
 
