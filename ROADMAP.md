@@ -30,6 +30,34 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
 - [x] Contact — form + info layout in place; phone/email/address are still
       placeholders (see open questions)
 
+## Phase 8 — Flagship product & image sourcing ✅ (this update)
+
+- [x] Merged the two empty "Ladypack 45/A2" and "Ladypack 45N" placeholder
+      entries into a single flagship **Ladypack 45N/A2** model, first in the
+      Ladypack lineup, with both supplied photos wired into the existing
+      multi-image zoom/scroll gallery
+- [x] Added a "Flagship" badge treatment (`.model-card--flagship` /
+      `.flagship-badge`) for the 45N/A2 card
+- [x] Homepage hero now uses the flagship 45N/A2 photo instead of the
+      Ladypack 65 photo, with updated alt text
+- [x] Cleaned the two supplied 45N/A2 photos (cropped a stray UI sidebar
+      edge and painted out a screenshot overlay icon) before saving as
+      `ladypack-45na2-1.jpg` / `ladypack-45na2-2.jpg`
+- [x] Confirmed Ladypack is manufactured by Pactur (Bologna, Italy) —
+      matches the branding in the supplied photos
+- [x] Sourced official image URLs for Klok 550, Ladypack Table Top
+      (= Pactur's "Klok 35 Table Top"), and Akebono OB-560 — see CHANGES.md
+      for the exact links and filenames; not yet downloaded into the repo
+      (sandboxed build environment can't fetch arbitrary external URLs)
+- [x] Flagged that **Akebono OB-460 doesn't appear in the manufacturer's
+      (StraPack) current catalog** — noted as a new/updated product per
+      owner, image to follow once sourced from the company directly
+- [x] Verified DFM5540/FM5540 (Dofeng) — description confirmed and kept
+      as-is per owner; sourced candidate images, not yet downloaded
+- [ ] Swap in real photos for Klok 550, Ladypack Table Top, Akebono OB-460,
+      OB-560, DFM5540, and FM5540 once dropped into `public/images/products/`
+      (see CHANGES.md for exact source links + filenames)
+
 ## Phase 7 — Product line breakdowns ✅ (this update)
 
 - [x] Ladypack, Adpak/Smipack SL series, and the Akebono OB series broken

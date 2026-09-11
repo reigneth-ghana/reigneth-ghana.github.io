@@ -8,30 +8,25 @@ const shrinkWrapFamilies = [
       "A compact, angular packaging machine with a 90&deg; heating oven, built to provide high-quality packaging with PVC, Polypropylene, Polyolefin, or Polyethylene film. An impulse sealing system with a nickel-chrome blade cuts and seals centre-folded roll film, and a motorized conveyor feeds items into a shrink tunnel heated by armored heaters. We supply several sizes and configurations to match your throughput:",
     models: [
       {
+        name: "Ladypack 45N/A2",
+        flagship: true,
+        images: [
+          "/images/products/ladypack-45na2-1.jpg",
+          "/images/products/ladypack-45na2-2.jpg",
+        ],
+        specs: [
+          "Our flagship shrink wrap machine &mdash; combined N/A2 configuration of the Ladypack 45 footprint",
+          "Touch-screen PLC control panel with guided cycle settings",
+          "Impulse-seal-and-tunnel design with foot-pedal operation and an integrated film-roll holder",
+        ],
+      },
+      {
         name: "Ladypack 45",
         images: ["/images/products/ladypack-45.jpg"],
         specs: [
           "Smallest footprint in the range &mdash; suited to lower-volume, bench-side packing runs",
           "Two conveyor-belt cycles: forward-forward or forward-reverse, selectable from the panel",
           "Handles polyethylene, PVC, polypropylene and technical films",
-        ],
-      },
-      {
-        name: "Ladypack 45/A2",
-        images: null,
-        placeholderPath: "/images/products/ladypack-45a2.jpg",
-        specs: [
-          "A2-configuration variant of the Ladypack 45 footprint",
-          "Same impulse-seal-and-tunnel design as the rest of the range",
-        ],
-      },
-      {
-        name: "Ladypack 45N",
-        images: null,
-        placeholderPath: "/images/products/ladypack-45n.jpg",
-        specs: [
-          "N-configuration variant of the Ladypack 45 footprint",
-          "Same impulse-seal-and-tunnel design as the rest of the range",
         ],
       },
       {
@@ -54,8 +49,7 @@ const shrinkWrapFamilies = [
       },
       {
         name: "Ladypack Klok 550",
-        images: null,
-        placeholderPath: "/images/products/ladypack-klok550.jpg",
+        images: ["/images/products/ladypack-klok550.png"],
         specs: [
           "Larger-format model in the Ladypack line, for bigger or bulkier items",
           "Same impulse-seal-and-tunnel technology, scaled up for the 550 size",
@@ -63,8 +57,7 @@ const shrinkWrapFamilies = [
       },
       {
         name: "Ladypack Table Top",
-        images: null,
-        placeholderPath: "/images/products/ladypack-tabletop.jpg",
+        images: ["/images/products/ladypack-tabletop.jpg"],
         specs: [
           "Compact bench/table-top configuration for lower-volume or space-constrained setups",
           "Same impulse-seal-and-tunnel design as the rest of the range",
@@ -112,7 +105,7 @@ const akebonoModels = {
   models: [
     {
       name: "Akebono OB-360",
-      images: ["/images/products/akebono-banding.jpg"],
+      images: ["/images/products/akebono-ob360.jpg"],
       specs: [
         "Up to 30 banding cycles per minute",
         "Bands packages from 30mm &times; 10mm up to 420mm &times; 210mm",
@@ -132,8 +125,7 @@ const akebonoModels = {
     },
     {
       name: "Akebono OB-560",
-      images: null,
-      placeholderPath: "/images/products/akebono-ob560.jpg",
+      images: ["/images/products/akebono-ob560.jpg"],
       specs: [
         "The largest arch in the range, for higher-volume banding floors",
         "Same reliable heat-sealing mechanism as the OB-360 and OB-460",
@@ -158,8 +150,7 @@ const mabasModel = {
 const budgetBandingModels = [
   {
     name: "DFM5540",
-    images: null,
-    placeholderPath: "/images/products/dfm5540.jpg",
+    images: ["/images/products/dfm5540.jpg"],
     specs: [
       "Chinese-manufactured automatic banknote banding machine",
       "Similar form factor and banding function to the genuine Mabas SBM-90, at a lower price point",
@@ -167,8 +158,7 @@ const budgetBandingModels = [
   },
   {
     name: "FM5540",
-    images: null,
-    placeholderPath: "/images/products/fm5540.jpg",
+    images: ["/images/products/fm5540.jpg"],
     specs: [
       "Chinese-manufactured automatic banknote banding machine",
       "A step up from the DFM5540 within the same alternative line",
@@ -212,7 +202,10 @@ const budgetBandingModels = [
             <div class="model-grid">
               {family.models.map((m) =>
                 m.images ? (
-                  <article class="model-card">
+                  <article
+                    class={`model-card${m.flagship ? " model-card--flagship" : ""}`}
+                  >
+                    {m.flagship && <span class="flagship-badge">Flagship</span>}
                     <button
                       type="button"
                       class="model-card__photo"
@@ -744,6 +737,27 @@ const budgetBandingModels = [
 
   .model-card--text {
     padding: var(--space-3);
+  }
+
+  .model-card--flagship {
+    position: relative;
+    border-color: var(--color-brand-red);
+    box-shadow: 0 0 0 1px var(--color-brand-red);
+  }
+
+  .flagship-badge {
+    position: absolute;
+    top: -0.6rem;
+    left: var(--space-3);
+    background: var(--color-brand-red);
+    color: var(--color-surface);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
   }
 
   .model-card__photo {
