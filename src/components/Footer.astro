@@ -123,12 +123,19 @@ const year = new Date().getFullYear();
   }
 
   .site-footer__zones a {
-    color: var(--color-brand-red);
+    /* Phase 10 AA audit: var(--color-brand-red) on this dark footer
+       background is only 1.96:1 (pre-existing, not a Phase 10
+       regression). Lightened for this dark context only — passes
+       WCAG AA at ~5:1. --color-brand-red itself is unchanged and
+       still used everywhere it sits on light backgrounds. */
+    color: #e05c5c;
     font-weight: 600;
   }
 
   .site-footer__zones a:hover {
-    color: #c9422e;
+    /* Lightened to keep the hover state above AA too (old #c9422e
+       was ~3.5:1 on this background). */
+    color: #eb7a7a;
   }
 
   .site-footer__bottom {

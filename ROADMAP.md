@@ -81,6 +81,11 @@ phase by phase. Each phase is delivered as a drag-and-drop zip update.
       1.96:1 — both colors are untouched by Phase 10, so this isn't a
       regression, but it was failing AA before this phase too and is
       worth its own fix (e.g. a lighter red for dark backgrounds).
+      **Fixed (this update):** `.site-footer__zones a` now uses `#e05c5c`
+      (a lightened red scoped to this dark-background context only —
+      `--color-brand-red` itself is unchanged) for ~5:1 contrast on
+      `--color-ink`; the hover state moved from `#c9422e` (~3.5:1) to
+      `#eb7a7a` (~6.3:1) so it doesn't regress back below AA.
 - [ ] Update `src/styles/global.css` design tokens and confirm the change
       reads consistently across all five pages (home, products, services,
       about, contact, downloads)
