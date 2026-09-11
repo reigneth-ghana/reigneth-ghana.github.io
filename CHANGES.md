@@ -1,41 +1,68 @@
-# Fix family spacing + reorder Ladypack models
+# Click-to-zoom product photos
 
 ## Why
 
-The gap between the Ladypack and Adpak/Smipack sections (and between
-every other family block on the page) had gone missing again.
+Requested click-to-zoom on product images, with room for multiple
+photos per model going forward.
 
-## Root cause
+## Approach
 
-`.family { margin-bottom: var(--space-5); }` — but `--space-5` was
-never defined in the design tokens (`src/styles/global.css`'s scale
-jumps `--space-4` &rarr; `--space-6`). An undefined custom property
-makes the declaration invalid at computed-value time, so it falls
-back to `margin-bottom`'s initial value of `0` — no visible error,
-just silently no spacing. This is why the fix "keeps coming back":
-the rule looks correct on read-through but references a token that
-doesn't exist anywhere in the stylesheet.
+No framework/dependency added — this is a small vanilla-JS lightbox
+built directly into `products.astro` (TypeScript in the `<script>`
+tag, stripped at build time same as everywhere else in the project).
+Kept it self-contained to this one page rather than pulling in a
+library, since Astro ships zero JS by default and this only needs
+~40 lines of logic.
+
+Data model change: every model's `img: "path" | null` became
+`images: string[] | null` — an array instead of a single path.
+Existing single-photo models just became a one-item array
+(`images: ["/images/products/ladypack-45.jpg"]`); nothing visually
+changes for them today, but adding a second photo later is just
+appending to that array — no other markup changes needed. Models with
+no photo yet keep `images: null` + `placeholderPath`, same as before,
+and aren't clickable (nothing to zoom into).
 
 ## What changed
 
 - **`src/pages/products.astro`**
-  - `.family` margin-bottom changed from `var(--space-5)` (undefined
-    &rarr; computes to 0) to `var(--space-6)` (3rem, an actual token) —
-    restores spacing between every family block on the page (Ladypack,
-    Adpak/Smipack, Akebono, Mabas, budget banding), not just
-    Ladypack&rarr;Adpak.
-  - Reordered the Ladypack `models` array into numeric groups: 45,
-    45/A2, 45N, 65, 110, then Klok 550 and Table Top (no number to
-    sort by, so listed last).
+  - Data: `img` &rarr; `images: []` across `shrinkWrapFamilies`,
+    `akebonoModels`, `mabasModel`; `budgetBandingModels` renamed
+    `img: null` &rarr; `images: null` for consistency (still
+    placeholder-only, no photos yet).
+  - Every photographed product (Ladypack &times; 3, Adpak/Smipack
+    &times; 3, Akebono OB-360, Mabas SBM-90, Coin 100/120 &mdash; 9
+    total) now renders as a `<button>` wrapping the image with a
+    small zoom-icon badge in the corner, `cursor: zoom-in`, instead
+    of a plain `<img>`.
+  - Added a single lightbox overlay (`#lightbox`) once near the end
+    of the page: full photo, close button, prev/next arrows (only
+    shown when a model has more than one photo), and a counter
+    ("1 / 3") plus the model name.
+  - Added the vanilla-JS lightbox logic in a `<script>` tag: click
+    any photo to open it, click the backdrop/&times;/Escape to close,
+    prev/next buttons or Left/Right arrow keys to page through a
+    model's photos when it has more than one.
+  - New CSS: `.model-card__photo`, `.product__photo`, `.zoom-badge`,
+    and the `.lightbox*` rules, plus a small mobile tweak so the
+    prev/next arrows sit inside the viewport instead of off-screen.
 
 ## Not changed
 
-No specs were touched — 45/A2, 45N, Klok 550, and Table Top still
-carry placeholder-level qualitative specs pending real numbers.
+Placeholder ("Photo coming soon") cards aren't clickable — nothing
+to zoom into yet. `about.astro`, `contact.astro`, `services.astro`,
+`downloads.astro`, `index.astro` — untouched.
 
-## Open items
+## Adding more photos to a model later
 
-- Real photos for 45/A2, 45N, Klok 550, Table Top (placeholders as
-  before).
-- Real specs for 45/A2, 45N, Klok 550, Table Top — send them over and
-  they'll replace the placeholder bullet points.
+Just extend that model's `images` array, e.g.:
+
+```js
+images: [
+  "/images/products/ladypack-45.jpg",
+  "/images/products/ladypack-45-side.jpg",
+],
+```
+
+The prev/next arrows and counter appear automatically once a model
+has more than one image — no template changes needed.

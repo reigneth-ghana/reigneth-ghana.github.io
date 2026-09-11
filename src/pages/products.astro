@@ -9,7 +9,7 @@ const shrinkWrapFamilies = [
     models: [
       {
         name: "Ladypack 45",
-        img: "/images/products/ladypack-45.jpg",
+        images: ["/images/products/ladypack-45.jpg"],
         specs: [
           "Smallest footprint in the range &mdash; suited to lower-volume, bench-side packing runs",
           "Two conveyor-belt cycles: forward-forward or forward-reverse, selectable from the panel",
@@ -18,7 +18,7 @@ const shrinkWrapFamilies = [
       },
       {
         name: "Ladypack 45/A2",
-        img: null,
+        images: null,
         placeholderPath: "/images/products/ladypack-45a2.jpg",
         specs: [
           "A2-configuration variant of the Ladypack 45 footprint",
@@ -27,7 +27,7 @@ const shrinkWrapFamilies = [
       },
       {
         name: "Ladypack 45N",
-        img: null,
+        images: null,
         placeholderPath: "/images/products/ladypack-45n.jpg",
         specs: [
           "N-configuration variant of the Ladypack 45 footprint",
@@ -36,7 +36,7 @@ const shrinkWrapFamilies = [
       },
       {
         name: "Ladypack 65",
-        img: "/images/products/ladypack-1.jpg",
+        images: ["/images/products/ladypack-1.jpg"],
         specs: [
           "Our most-supplied configuration &mdash; wider sealing table and taller package clearance than the 45",
           "Same impulse-seal-and-tunnel design, built for steadier daily volumes",
@@ -45,7 +45,7 @@ const shrinkWrapFamilies = [
       },
       {
         name: "Ladypack 110",
-        img: "/images/products/ladypack-110.jpg",
+        images: ["/images/products/ladypack-110.jpg"],
         specs: [
           "The largest of the three &mdash; wider arch and higher throughput for high-volume floors",
           "Suited to cash centres and bulk packaging runs where the 45 or 65 would bottleneck",
@@ -54,7 +54,7 @@ const shrinkWrapFamilies = [
       },
       {
         name: "Ladypack Klok 550",
-        img: null,
+        images: null,
         placeholderPath: "/images/products/ladypack-klok550.jpg",
         specs: [
           "Larger-format model in the Ladypack line, for bigger or bulkier items",
@@ -63,7 +63,7 @@ const shrinkWrapFamilies = [
       },
       {
         name: "Ladypack Table Top",
-        img: null,
+        images: null,
         placeholderPath: "/images/products/ladypack-tabletop.jpg",
         specs: [
           "Compact bench/table-top configuration for lower-volume or space-constrained setups",
@@ -79,7 +79,7 @@ const shrinkWrapFamilies = [
     models: [
       {
         name: "Smipack SL45",
-        img: "/images/products/smipack-sl45.jpg",
+        images: ["/images/products/smipack-sl45.jpg"],
         specs: [
           "Entry-level SL series &mdash; outputs of up to 300 packs/hour",
           "Compact single-column hood packer, suited to lighter-duty use",
@@ -87,7 +87,7 @@ const shrinkWrapFamilies = [
       },
       {
         name: "Smipack S560N",
-        img: "/images/products/smipack-s560n.jpg",
+        images: ["/images/products/smipack-s560n.jpg"],
         specs: [
           "Part of the S series &mdash; Smipack's core industrial range, for considerably higher throughput than the SL",
           "Powered take-away conveyor for continuous, hands-off production",
@@ -95,7 +95,7 @@ const shrinkWrapFamilies = [
       },
       {
         name: "Smipack S560NA",
-        img: "/images/products/smipack-s560na.jpg",
+        images: ["/images/products/smipack-s560na.jpg"],
         specs: [
           "Same S-series performance as the S560N, in an alternative chassis finish",
           "Manual or automatic-cycle operation with a powered take-away conveyor",
@@ -112,7 +112,7 @@ const akebonoModels = {
   models: [
     {
       name: "Akebono OB-360",
-      img: "/images/products/akebono-banding.jpg",
+      images: ["/images/products/akebono-banding.jpg"],
       specs: [
         "Up to 30 banding cycles per minute",
         "Bands packages from 30mm &times; 10mm up to 420mm &times; 210mm",
@@ -122,7 +122,7 @@ const akebonoModels = {
     },
     {
       name: "Akebono OB-460",
-      img: null,
+      images: null,
       placeholderPath: "/images/products/akebono-ob460.jpg",
       specs: [
         "Same heat-sealing mechanism as the OB-360, stepped up to a larger arch",
@@ -132,7 +132,7 @@ const akebonoModels = {
     },
     {
       name: "Akebono OB-560",
-      img: null,
+      images: null,
       placeholderPath: "/images/products/akebono-ob560.jpg",
       specs: [
         "The largest arch in the range, for higher-volume banding floors",
@@ -145,7 +145,7 @@ const akebonoModels = {
 
 const mabasModel = {
   name: "Mabas SBM-90 Banding Machine",
-  img: "/images/products/mabas-banding.jpg",
+  images: ["/images/products/mabas-banding.jpg"],
   copy: "A heavy-duty automatic banknote banding machine from Mabas Electronics, with an integrated ink-jet band printer.",
   specs: [
     "Prints bank name, branch name, operator name and date across 4 lines",
@@ -158,7 +158,7 @@ const mabasModel = {
 const budgetBandingModels = [
   {
     name: "DFM5540",
-    img: null,
+    images: null,
     placeholderPath: "/images/products/dfm5540.jpg",
     specs: [
       "Chinese-manufactured automatic banknote banding machine",
@@ -167,7 +167,7 @@ const budgetBandingModels = [
   },
   {
     name: "FM5540",
-    img: null,
+    images: null,
     placeholderPath: "/images/products/fm5540.jpg",
     specs: [
       "Chinese-manufactured automatic banknote banding machine",
@@ -211,9 +211,30 @@ const budgetBandingModels = [
             <p class="family__intro" set:html={family.intro} />
             <div class="model-grid">
               {family.models.map((m) =>
-                m.img ? (
+                m.images ? (
                   <article class="model-card">
-                    <img src={m.img} alt={m.name} width="360" height="270" />
+                    <button
+                      type="button"
+                      class="model-card__photo"
+                      data-lightbox
+                      data-images={JSON.stringify(m.images)}
+                      data-name={m.name}
+                    >
+                      <img
+                        src={m.images[0]}
+                        alt={m.name}
+                        width="360"
+                        height="270"
+                      />
+                      <span class="zoom-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="14" height="14">
+                          <path
+                            fill="currentColor"
+                            d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14Z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
                     <div class="model-card__body">
                       <h4>{m.name}</h4>
                       <ul>
@@ -289,9 +310,30 @@ const budgetBandingModels = [
         <div class="model-grid">
           {
             akebonoModels.models.map((m) =>
-              m.img ? (
+              m.images ? (
                 <article class="model-card">
-                  <img src={m.img} alt={m.name} width="360" height="270" />
+                  <button
+                    type="button"
+                    class="model-card__photo"
+                    data-lightbox
+                    data-images={JSON.stringify(m.images)}
+                    data-name={m.name}
+                  >
+                    <img
+                      src={m.images[0]}
+                      alt={m.name}
+                      width="360"
+                      height="270"
+                    />
+                    <span class="zoom-badge" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="14" height="14">
+                        <path
+                          fill="currentColor"
+                          d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14Z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
                   <div class="model-card__body">
                     <h4>{m.name}</h4>
                     <ul>
@@ -337,12 +379,28 @@ const budgetBandingModels = [
         <h3>Mabas SBM-90</h3>
         <div class="product-grid product-grid--single">
           <article class="product">
-            <img
-              src={mabasModel.img}
-              alt={mabasModel.name}
-              width="420"
-              height="280"
-            />
+            <button
+              type="button"
+              class="product__photo"
+              data-lightbox
+              data-images={JSON.stringify(mabasModel.images)}
+              data-name={mabasModel.name}
+            >
+              <img
+                src={mabasModel.images[0]}
+                alt={mabasModel.name}
+                width="420"
+                height="280"
+              />
+              <span class="zoom-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14">
+                  <path
+                    fill="currentColor"
+                    d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14Z"
+                  ></path>
+                </svg>
+              </span>
+            </button>
             <div class="product__body">
               <h3>{mabasModel.name}</h3>
               <p set:html={mabasModel.copy} />
@@ -432,12 +490,28 @@ const budgetBandingModels = [
 
       <div class="product-grid product-grid--single">
         <article class="product">
-          <img
-            src="/images/products/coin-counter.jpg"
-            alt="Coin 100/120 counting machine"
-            width="420"
-            height="280"
-          />
+          <button
+            type="button"
+            class="product__photo"
+            data-lightbox
+            data-images={JSON.stringify(["/images/products/coin-counter.jpg"])}
+            data-name="Coin 100/120"
+          >
+            <img
+              src="/images/products/coin-counter.jpg"
+              alt="Coin 100/120 counting machine"
+              width="420"
+              height="280"
+            />
+            <span class="zoom-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14">
+                <path
+                  fill="currentColor"
+                  d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14Z"
+                ></path>
+              </svg>
+            </span>
+          </button>
           <div class="product__body">
             <h3>Coin 100/120</h3>
             <p>
@@ -465,8 +539,137 @@ const budgetBandingModels = [
       </p>
       <a href="/contact" class="button button--primary">Request a quote</a>
     </section>
+
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+      <div class="lightbox__backdrop" data-lightbox-close></div>
+      <div class="lightbox__panel" role="dialog" aria-modal="true">
+        <button
+          type="button"
+          class="lightbox__close"
+          data-lightbox-close
+          aria-label="Close"
+        >
+          &times;
+        </button>
+        <button
+          type="button"
+          class="lightbox__nav lightbox__nav--prev"
+          data-lightbox-prev
+          aria-label="Previous photo"
+        >
+          &lsaquo;
+        </button>
+        <img id="lightbox-img" src="" alt="" />
+        <button
+          type="button"
+          class="lightbox__nav lightbox__nav--next"
+          data-lightbox-next
+          aria-label="Next photo"
+        >
+          &rsaquo;
+        </button>
+        <div class="lightbox__meta">
+          <span id="lightbox-name"></span>
+          <span id="lightbox-counter"></span>
+        </div>
+      </div>
+    </div>
   </main>
 </BaseLayout>
+
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const imgEl = document.getElementById(
+    "lightbox-img",
+  ) as HTMLImageElement | null;
+  const nameEl = document.getElementById("lightbox-name");
+  const counterEl = document.getElementById("lightbox-counter");
+  const prevBtn = lightbox?.querySelector<HTMLButtonElement>(
+    "[data-lightbox-prev]",
+  );
+  const nextBtn = lightbox?.querySelector<HTMLButtonElement>(
+    "[data-lightbox-next]",
+  );
+
+  let currentImages: string[] = [];
+  let currentIndex = 0;
+  let currentName = "";
+
+  function render() {
+    if (!imgEl || !nameEl || !counterEl) return;
+    imgEl.src = currentImages[currentIndex] ?? "";
+    imgEl.alt = currentName;
+    nameEl.textContent = currentName;
+    const multi = currentImages.length > 1;
+    counterEl.textContent = multi
+      ? `${currentIndex + 1} / ${currentImages.length}`
+      : "";
+    if (prevBtn) prevBtn.hidden = !multi;
+    if (nextBtn) nextBtn.hidden = !multi;
+  }
+
+  function openLightbox(images: string[], name: string) {
+    if (!lightbox || !images.length) return;
+    currentImages = images;
+    currentName = name;
+    currentIndex = 0;
+    render();
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+
+    const trigger = target.closest<HTMLElement>("[data-lightbox]");
+    if (trigger) {
+      const raw = trigger.dataset.images ?? "[]";
+      const images: string[] = JSON.parse(raw);
+      openLightbox(images, trigger.dataset.name ?? "");
+      return;
+    }
+
+    if (target.closest("[data-lightbox-close]")) {
+      closeLightbox();
+      return;
+    }
+
+    if (target.closest("[data-lightbox-prev]")) {
+      currentIndex =
+        (currentIndex - 1 + currentImages.length) % currentImages.length;
+      render();
+      return;
+    }
+
+    if (target.closest("[data-lightbox-next]")) {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      render();
+      return;
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox?.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") {
+      currentIndex =
+        (currentIndex - 1 + currentImages.length) % currentImages.length;
+      render();
+    }
+    if (e.key === "ArrowRight") {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      render();
+    }
+  });
+</script>
 
 <style>
   .eyebrow {
@@ -499,6 +702,11 @@ const budgetBandingModels = [
 
   .family {
     margin-bottom: var(--space-6);
+  }
+
+  .family + .family {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-6);
   }
 
   .family h3 {
@@ -538,12 +746,47 @@ const budgetBandingModels = [
     padding: var(--space-3);
   }
 
+  .model-card__photo {
+    all: unset;
+    position: relative;
+    display: block;
+    width: 100%;
+    cursor: zoom-in;
+    border-radius: 2px;
+  }
+
+  .model-card__photo:focus-visible {
+    outline: 2px solid var(--color-brand-red);
+    outline-offset: 1px;
+  }
+
   .model-card img {
     width: 100%;
     height: 8rem;
     object-fit: contain;
     background: var(--color-surface);
     border-radius: 2px;
+    display: block;
+  }
+
+  .zoom-badge {
+    position: absolute;
+    right: 0.4rem;
+    bottom: 0.4rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-ink);
+    color: var(--color-surface);
+    border-radius: 50%;
+    opacity: 0.82;
+  }
+
+  .model-card__photo:hover .zoom-badge,
+  .model-card__photo:focus-visible .zoom-badge {
+    opacity: 1;
   }
 
   .model-card__placeholder {
@@ -554,7 +797,7 @@ const budgetBandingModels = [
     align-items: center;
     justify-content: center;
     gap: 0.3rem;
-    background: var(--color-paper);
+    background: var(--color-surface);
     border: 1px dashed var(--color-brass);
     border-radius: 2px;
     color: var(--color-brass-text);
@@ -620,12 +863,32 @@ const budgetBandingModels = [
     padding: var(--space-3);
   }
 
+  .product__photo {
+    all: unset;
+    position: relative;
+    display: block;
+    width: 100%;
+    cursor: zoom-in;
+    border-radius: 2px;
+  }
+
+  .product__photo:focus-visible {
+    outline: 2px solid var(--color-brand-red);
+    outline-offset: 1px;
+  }
+
   .product img {
     width: 100%;
     height: 8rem;
     object-fit: contain;
     background: var(--color-surface);
     border-radius: 2px;
+    display: block;
+  }
+
+  .product__photo:hover .zoom-badge,
+  .product__photo:focus-visible .zoom-badge {
+    opacity: 1;
   }
 
   .product__body h3 {
@@ -692,9 +955,127 @@ const budgetBandingModels = [
     margin-top: var(--space-2);
   }
 
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+  }
+
+  .lightbox.is-open {
+    display: flex;
+  }
+
+  .lightbox__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(28, 26, 26, 0.86);
+  }
+
+  .lightbox__panel {
+    position: relative;
+    z-index: 1;
+    max-width: min(92vw, 56rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightbox__panel img {
+    max-width: 100%;
+    max-height: 74vh;
+    object-fit: contain;
+    background: var(--color-surface);
+    border-radius: 4px;
+  }
+
+  .lightbox__close {
+    all: unset;
+    position: absolute;
+    top: -2.75rem;
+    right: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-surface);
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .lightbox__close:hover,
+  .lightbox__close:focus-visible {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .lightbox__nav {
+    all: unset;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--color-surface);
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .lightbox__nav:hover,
+  .lightbox__nav:focus-visible {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .lightbox__nav--prev {
+    left: -3.25rem;
+  }
+
+  .lightbox__nav--next {
+    right: -3.25rem;
+  }
+
+  .lightbox__nav[hidden] {
+    display: none;
+  }
+
+  .lightbox__meta {
+    margin-top: var(--space-2);
+    display: flex;
+    gap: var(--space-3);
+    color: var(--color-surface);
+    font-size: var(--text-sm);
+  }
+
+  #lightbox-counter {
+    font-family: var(--font-mono);
+    color: #c9c6c3;
+  }
+
   @media (max-width: 860px) {
     .model-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lightbox__nav--prev {
+      left: 0;
+    }
+
+    .lightbox__nav--next {
+      right: 0;
+    }
+
+    .lightbox__close {
+      top: -2.5rem;
     }
   }
 
